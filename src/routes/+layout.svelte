@@ -40,7 +40,11 @@
   <aside>
     <nav>
       <ul>
-        <li>
+        <li
+          aria-current={$page.url.pathname === "/typing-test"
+            ? "page"
+            : undefined}
+        >
           <a href="/typing-test">Typing Test</a>
         </li>
       </ul>
