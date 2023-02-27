@@ -1,13 +1,23 @@
 <script>
   import Header from "./Header.svelte";
-  import Sidebar from "../components/Sidebar.svelte";
   import "./styles.css";
 </script>
 
 <div class="app">
   <Header />
-  <Sidebar />
-  <main>
+  <aside id="sidebar">
+    <nav>
+      <ul>
+        <li>
+          <a href="/about">HOkme</a>
+        </li>
+        <li>
+          <a href="/about">about</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <main id="content">
     <slot />
   </main>
 
@@ -20,12 +30,16 @@
 
 <style>
   .app {
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
+    display: grid;
+    grid-template-areas:
+      "header header header"
+      "sidebar main main"
+      "sidebar footer footer";
   }
 
   main {
+    grid-area: main;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -37,6 +51,7 @@
   }
 
   footer {
+    grid-area: footer;
     display: flex;
     flex-direction: column;
     justify-content: center;
