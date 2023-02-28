@@ -1,45 +1,33 @@
 <script>
   import { page } from "$app/stores";
-  import logo from "$lib/images/svelte-logo.svg";
+  import hamburger from "$lib/images/hamburger.svg";
   import github from "$lib/images/github.svg";
   import "./styles.css";
+
+  let isSidebarOpen = false;
 </script>
 
 <div class="app">
-  <header>
+  <aside class:SidebarOpen={isSidebarOpen}>
     <div class="corner">
-      <a href="https://kit.svelte.dev">
-        <img src={logo} alt="SvelteKit" />
-      </a>
+      <button
+        id="hamburger"
+        on:click={() => {
+          isSidebarOpen = !isSidebarOpen;
+        }}
+      >
+        <img src={hamburger} alt="Sidebar Hamburger" />
+      </button>
     </div>
-
     <nav>
-      <svg viewBox="0 0 2 3" aria-hidden="true">
-        <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-      </svg>
-      <ul>
-        <li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
-          <a href="/">Home</a>
+      <ul class="sidenavul">
+        <li
+          aria-current={$page.url.pathname === "/typing-test"
+            ? "page"
+            : undefined}
+        >
+          <a href="/typing-test">Typing Test</a>
         </li>
-        <li aria-current={$page.url.pathname === "/about" ? "page" : undefined}>
-          <a href="/about">About</a>
-        </li>
-      </ul>
-      <svg viewBox="0 0 2 3" aria-hidden="true">
-        <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-      </svg>
-    </nav>
-
-    <div class="corner">
-      <a href="https://github.com/sveltejs/kit">
-        <img src={github} alt="GitHub" />
-      </a>
-    </div>
-  </header>
-
-  <aside>
-    <nav>
-      <ul>
         <li
           aria-current={$page.url.pathname === "/typing-test"
             ? "page"
@@ -50,27 +38,76 @@
       </ul>
     </nav>
   </aside>
+  <div
+    id="overlay"
+    style="visibility: {isSidebarOpen ? 'visible' : 'hidden'};"
+    on:click={() => {
+      isSidebarOpen = !isSidebarOpen;
+    }}
+    on:keyup
+  />
+  <div>
+    <header>
+      <div class="corner">
+        <button
+          id="hamburger"
+          on:click={() => {
+            isSidebarOpen = !isSidebarOpen;
+          }}
+        >
+          <img src={hamburger} alt="Sidebar Hamburger" />
+        </button>
+      </div>
 
-  <main>
-    <slot />
-  </main>
+      <nav>
+        <svg viewBox="0 0 2 3" aria-hidden="true">
+          <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
+        </svg>
+        <ul>
+          <li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
+            <a href="/">Home</a>
+          </li>
+          <li
+            aria-current={$page.url.pathname === "/about" ? "page" : undefined}
+          >
+            <a href="/about">About</a>
+          </li>
+        </ul>
+        <svg viewBox="0 0 2 3" aria-hidden="true">
+          <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
+        </svg>
+      </nav>
 
-  <footer>
-    <p>
-      visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
-    </p>
-  </footer>
+      <div class="corner">
+        <a href="https://github.com/sveltejs/kit">
+          <img src={github} alt="GitHub" />
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>
+        visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+      </p>
+    </footer>
+  </div>
 </div>
 
 <style>
   .app {
     min-height: 100vh;
+  }
+
+  .app > div {
     display: grid;
     grid-template-areas:
-      "header header header"
-      "aside main main"
-      "aside footer footer";
-    grid-template-columns: 1fr 4fr 1fr;
+      "header header"
+      "main main"
+      "footer footer";
     grid-template-rows: auto 1fr auto;
   }
 
@@ -80,8 +117,37 @@
     justify-content: space-between;
   }
 
+  #hamburger {
+    background: rgba(0, 0, 0, 0);
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
   aside {
+    position: absolute;
+    left: -100%;
+    height: 100%;
+    width: 300px;
+    transition: left 0.1s ease-in-out;
     grid-area: aside;
+    z-index: 2;
+    background-color: var(--color-bg-1);
+    background-image: radial-gradient(
+        50% 50% at 50% 50%,
+        rgba(255, 255, 255, 0.75) 0%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      linear-gradient(
+        180deg,
+        var(--color-bg-0) 0%,
+        var(--color-bg-1) 15%,
+        var(--color-bg-2) 50%
+      );
   }
 
   main {
@@ -96,6 +162,18 @@
     box-sizing: border-box;
   }
 
+  .SidebarOpen {
+    left: 0;
+  }
+
+  #overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    visibility: hidden;
+  }
   footer {
     grid-area: footer;
     display: flex;
@@ -138,6 +216,10 @@
     display: flex;
     justify-content: center;
     --background: rgba(255, 255, 255, 0.7);
+  }
+
+  .sidenavul {
+    background-color: rgba(0, 0, 0, 0);
   }
 
   svg {
