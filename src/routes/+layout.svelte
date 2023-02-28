@@ -1,10 +1,11 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import hamburger from "$lib/images/hamburger.svg";
   import github from "$lib/images/github.svg";
   import "./styles.css";
+  import navList from "./navList";
 
-  let isSidebarOpen = false;
+  let isSidebarOpen: boolean = false;
 </script>
 
 <div class="app">
@@ -21,20 +22,15 @@
     </div>
     <nav>
       <ul class="sidenavul">
-        <li
-          aria-current={$page.url.pathname === "/typing-test"
-            ? "page"
-            : undefined}
-        >
-          <a href="/typing-test">Typing Test</a>
-        </li>
-        <li
-          aria-current={$page.url.pathname === "/typing-test"
-            ? "page"
-            : undefined}
-        >
-          <a href="/typing-test">Typing Test</a>
-        </li>
+        {#each navList as nav}
+          <li
+            aria-current={$page.url.pathname === "/" + nav.route
+              ? "page"
+              : undefined}
+          >
+            <a href="/{nav.route}">{nav.name}</a>
+          </li>
+        {/each}
       </ul>
     </nav>
   </aside>
