@@ -42,7 +42,7 @@
     }}
     on:keyup
   />
-  <div>
+  <div id="actual">
     <header>
       <div class="corner">
         <button
@@ -98,7 +98,8 @@
     min-height: 100vh;
   }
 
-  .app > div {
+  #actual {
+    min-height: inherit;
     display: grid;
     grid-template-areas:
       "header header"
@@ -171,6 +172,7 @@
     visibility: hidden;
   }
   footer {
+    bottom: 0;
     grid-area: footer;
     display: flex;
     flex-direction: column;
