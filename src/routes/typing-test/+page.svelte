@@ -95,9 +95,6 @@
             temp3 = temp2.replace(temp + e.key, "");
           }
         }}
-        on:input={(e) => {
-          oninput = e.data;
-        }}
       />
     </div>
 
