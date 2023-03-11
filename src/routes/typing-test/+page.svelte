@@ -15,7 +15,7 @@
   let temp3 = "";
   let keydown = "";
   let oninput = "";
-  onMount(() => {
+  onMount(async () => {
     post = randomWords(30);
     temp2 = post[0];
     temp3 = post[0];
