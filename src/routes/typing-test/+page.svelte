@@ -1,14 +1,24 @@
 <script>
   import randomWords from "random-words";
-  let post = randomWords(30);
+  import { onMount } from "svelte";
+
+  /**
+   * @type {any[]}
+   */
+  let post = [];
   /**
    * @type {any[]}
    */
   let pre = [];
   let temp = "";
-  let temp2 = post[0];
-  let temp3 = post[0];
+  let temp2 = "";
+  let temp3 = "";
   let keydown = "";
+  onMount(async () => {
+    post = randomWords(30);
+    temp2 = post[0];
+    temp3 = post[0];
+  });
 </script>
 
 <svelte:head>
