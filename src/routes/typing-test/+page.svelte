@@ -8,6 +8,7 @@
   let temp = "";
   let temp2 = post[0];
   let temp3 = post[0];
+  let keydown = "";
 </script>
 
 <svelte:head>
@@ -21,6 +22,10 @@
     <div>time</div>
     <div>wpm</div>
     <div>cpm</div>
+    <div>temp: {temp}</div>
+    <div>temp2: {temp2}</div>
+    <div>temp3: {temp3}</div>
+    <div>keydown: {keydown}</div>
   </div>
   <div
     id="typing"
@@ -38,17 +43,22 @@
         id="editable"
         spellcheck="false"
         data-focus=""
+        autocapitalize="none"
         class={temp2.includes(temp, 0) ? "" : "wrong"}
         bind:textContent={temp}
-        on:input={(e) => {
-          console.log(temp.length);
-          if (e.data == " ") {
-            if (temp.length <= 1) {
-              console.log("hit space when string empty (do nothing)");
-              temp = "";
-              return;
-            }
-            temp = temp.slice(0, temp.length - 1);
+        on:keydown={(e) => {
+          keydown = e.key;
+          if (
+            e.key === "Enter" ||
+            (e.key === " " && temp === "") ||
+            (e.key === "Backspace" && temp === "")
+          ) {
+            e.preventDefault();
+            return;
+          }
+
+          if (e.key == " ") {
+            e.preventDefault();
             const word = {
               typed: temp,
               class: temp2 == temp ? "" : "wrong",
@@ -61,10 +71,16 @@
             if (post.length <= 15) {
               post = [...post, ...randomWords(30)];
             }
+            return;
           }
 
-          if (temp2.includes(temp, 0)) {
-            temp3 = temp2.replace(temp, "");
+          if (e.key === "Backspace" && temp2.includes(temp, 0)) {
+            temp3 = temp2.replace(temp.substring(0, temp.length - 1), "");
+            return;
+          }
+
+          if (temp2.includes(e.key, 0)) {
+            temp3 = temp2.replace(temp + e.key, "");
           }
         }}
       />
@@ -124,11 +140,13 @@
 
   #editable {
     caret-color: black;
+    background: none;
     outline: none;
     border-width: 0px;
     padding: 0;
     width: auto;
     color: var(--color-theme-1);
+    white-space: nowrap;
   }
   .wrong {
     text-decoration: line-through;
