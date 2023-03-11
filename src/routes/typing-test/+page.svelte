@@ -1,25 +1,29 @@
-<script>
+<script lang="ts">
   import randomWords from "random-words";
   import { onMount } from "svelte";
-
+  import type { PageData } from "./$types";
+  export let data: PageData;
   /**
    * @type {any[]}
    */
-  let post = [];
+  let post: string[] = data.post.words;
+  // let post: string[] = data.post.words;
   /**
    * @type {any[]}
    */
-  let pre = [];
+  let pre: { typed: string; class: string }[] = [];
   let temp = "";
-  let temp2 = "";
-  let temp3 = "";
+  // let temp2 = "";
+  let temp2 = post[0];
+  // let temp3 = "";
+  let temp3 = post[0];
   let keydown = "";
   let oninput = "";
-  onMount(async () => {
-    post = randomWords(30);
-    temp2 = post[0];
-    temp3 = post[0];
-  });
+  // onMount(async () => {
+  //   post = randomWords(30);
+  //   temp2 = post[0];
+  //   temp3 = post[0];
+  // });
 </script>
 
 <svelte:head>
