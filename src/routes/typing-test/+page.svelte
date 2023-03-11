@@ -14,6 +14,7 @@
   let temp2 = "";
   let temp3 = "";
   let keydown = "";
+  let oninput = "";
   onMount(() => {
     post = randomWords(30);
     temp2 = post[0];
@@ -36,6 +37,7 @@
     <div>temp2: {temp2}</div>
     <div>temp3: {temp3}</div>
     <div>keydown: {keydown}</div>
+    <div>oninput: {oninput}</div>
   </div>
   <div
     id="typing"
@@ -57,7 +59,7 @@
         class={temp2.includes(temp, 0) ? "" : "wrong"}
         bind:textContent={temp}
         on:keydown={(e) => {
-          keydown = e.toString();
+          keydown = e.key;
           if (
             e.key === "Enter" ||
             (e.key === " " && temp === "") ||
@@ -92,6 +94,9 @@
           if (temp2.includes(e.key, 0)) {
             temp3 = temp2.replace(temp + e.key, "");
           }
+        }}
+        on:input={(e) => {
+          oninput = e.data;
         }}
       />
     </div>
