@@ -47,7 +47,7 @@
         class={temp2.includes(temp, 0) ? "" : "wrong"}
         bind:textContent={temp}
         on:keydown={(e) => {
-          keydown = e.key;
+          keydown = e.toString();
           if (
             e.key === "Enter" ||
             (e.key === " " && temp === "") ||
