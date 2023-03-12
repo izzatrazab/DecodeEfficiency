@@ -1,29 +1,21 @@
 <script lang="ts">
   import randomWords from "random-words";
   import { onMount } from "svelte";
-  import type { PageData } from "./$types";
-  export let data: PageData;
-  /**
-   * @type {any[]}
-   */
-  let post: string[] = data.post.words;
-  // let post: string[] = data.post.words;
-  /**
-   * @type {any[]}
-   */
-  let pre: { typed: string; class: string }[] = [];
-  let temp = "";
-  // let temp2 = "";
-  let temp2 = post[0];
-  // let temp3 = "";
-  let temp3 = post[0];
-  let keydown = "";
-  let oninput = "";
-  // onMount(async () => {
-  //   post = randomWords(30);
-  //   temp2 = post[0];
-  //   temp3 = post[0];
-  // });
+
+  let sentences: string[] = [];
+  let typedSentences: { typed: string; class: string }[] = [];
+  let input: string = "";
+  let currentSentence: string = "";
+  // currentDisplay store/display suffix(substring at the end) of currentSentence
+  let currentDisplay: string = "";
+  let sentenceCount: number = 0;
+
+  onMount(() => {
+    console.log("here");
+    sentences = randomWords(10);
+    currentSentence = sentences[0];
+    currentDisplay = sentences[0];
+  });
 </script>
 
 <svelte:head>
@@ -34,14 +26,7 @@
 <div id="typing-test-page">
   <h1>Test your typing skills</h1>
   <div id="score">
-    <div>time</div>
-    <div>wpm</div>
-    <div>cpm</div>
-    <div>temp: {temp}</div>
-    <div>temp2: {temp2}</div>
-    <div>temp3: {temp3}</div>
-    <div>keydown: {keydown}</div>
-    <div>oninput: {oninput}</div>
+    <span>sentence count: {sentenceCount}</span>
   </div>
   <div
     id="typing"
@@ -51,7 +36,7 @@
     on:keydown
   >
     <div id="typed">
-      {#each pre as p}
+      {#each typedSentences as p}
         <span class={p.class}>{p.typed}</span>
       {/each}
       <span
@@ -60,54 +45,54 @@
         spellcheck="false"
         data-focus=""
         autocapitalize="none"
-        class={temp2.includes(temp, 0) ? "" : "wrong"}
-        bind:textContent={temp}
+        class={currentSentence.startsWith(input) ? "" : "wrong"}
+        bind:textContent={input}
         on:keydown={(e) => {
-          keydown = e.key;
           if (
             e.key === "Enter" ||
-            (e.key === " " && temp === "") ||
-            (e.key === "Backspace" && temp === "")
+            (e.key === " " && input === "") ||
+            (e.key === "Backspace" && input === "")
           ) {
             e.preventDefault();
             return;
           }
 
-          if (e.key == " ") {
+          if (e.key == " " && input !== " ") {
             e.preventDefault();
+            let temp = "wrong";
+            if (currentSentence == input) {
+              temp = "";
+              sentenceCount++;
+            }
             const word = {
-              typed: temp,
-              class: temp2 == temp ? "" : "wrong",
+              typed: input,
+              class: temp,
             };
-            pre = [...pre, word];
-            temp = "";
-            post = post.slice(1);
-            temp2 = post[0];
-            temp3 = post[0];
-            if (post.length <= 15) {
-              post = [...post, ...randomWords(30)];
+            typedSentences = [...typedSentences, word];
+            input = "";
+            sentences = sentences.slice(1);
+            currentSentence = sentences[0];
+            currentDisplay = sentences[0];
+            if (sentences.length <= 15) {
+              sentences = [...sentences, ...randomWords(10)];
             }
             return;
           }
-
-          if (e.key === "Backspace" && temp2.includes(temp, 0)) {
-            temp3 = temp2.replace(temp.substring(0, temp.length - 1), "");
-            return;
-          }
-
-          if (temp2.includes(e.key, 0)) {
-            temp3 = temp2.replace(temp + e.key, "");
+        }}
+        on:input={() => {
+          if (currentSentence.startsWith(input)) {
+            currentDisplay = currentSentence.replace(input, "");
           }
         }}
       />
     </div>
 
     <div id="new-sentence">
-      {#each post as pword, i}
-        {#if i != 0}
-          <span>{pword}</span>
+      {#each sentences as pword, i}
+        {#if i == 0}
+          <span>{currentDisplay}</span>
         {:else}
-          <span>{temp3}</span>
+          <span>{pword}</span>
         {/if}
       {/each}
     </div>
