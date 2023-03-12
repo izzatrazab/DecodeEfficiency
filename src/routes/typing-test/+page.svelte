@@ -16,7 +16,6 @@
     currentSentence = sentences[0];
     currentDisplay = sentences[0];
   });
-  let keydown: any;
 </script>
 
 <svelte:head>
@@ -49,16 +48,10 @@
         class={currentSentence.startsWith(input) ? "" : "wrong"}
         bind:textContent={input}
         on:keydown={(e) => {
-          keydown = {
-            keyCode: e.keyCode,
-            charCode: e.charCode,
-            key: e.key,
-            which: e.which,
-            code: e.code,
-          };
           if (
             e.key === "Enter" ||
-            (e.key === " " && input === "") ||
+            ((e.key === " " || e.keyCode === 32 || e.which === 32) &&
+              input === "") ||
             (e.key === "Backspace" && input === "")
           ) {
             e.preventDefault();
@@ -105,7 +98,6 @@
       {/each}
     </div>
   </div>
-  <div>{JSON.stringify(keydown)}</div>
 </div>
 
 <style>
