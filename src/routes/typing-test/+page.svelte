@@ -1,6 +1,7 @@
 <script lang="ts">
-  import randomWords from "random-words";
   import { onMount } from "svelte";
+  import randomWords from "random-words";
+  import reload from "$lib/images/reload.svg";
 
   let sentences: string[] = [];
   let typedSentences: { typed: string; class: string }[] = [];
@@ -27,6 +28,9 @@
   <h1>Test your typing skills</h1>
   <div id="score">
     <span>sentence count: {sentenceCount}</span>
+    <button id="reload" on:click={() => location.reload()}>
+      <img src={reload} alt="Reload Page" />
+    </button>
   </div>
   <div
     id="typing"
@@ -106,10 +110,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: Consolas, monaco, monospace;
   }
+
+  #score {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
   #typed {
     display: flex;
     justify-content: end;
+    color: #ababb0;
   }
 
   #typed > span {
@@ -129,11 +144,15 @@
     display: grid;
     grid-template-columns: 50% 50%;
     white-space: nowrap;
-    padding: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
     margin-top: 20px;
     border-color: var(--color-theme-1);
     background: var(--color-bg-2);
+    color: var(--color-text);
     box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.25);
+    line-height: 3.5;
+    font-size: 1.8rem;
   }
 
   #typing > div {
@@ -152,5 +171,20 @@
   }
   .wrong {
     text-decoration: line-through;
+  }
+
+  #reload {
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  #reload > img {
+    aspect-ratio: 1;
+    height: 2.5rem;
   }
 </style>
