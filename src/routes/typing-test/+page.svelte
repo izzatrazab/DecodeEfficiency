@@ -3,20 +3,39 @@
   import randomWords from "random-words";
   import reload from "$lib/images/reload.svg";
 
-  let sentences: string[] = [];
-  let typedSentences: { typed: string; class: string }[] = [];
+  let words: string[] = [];
+  let typedWords: { typed: string; class: string }[] = [];
   let input: string = "";
-  let currentSentence: string = "";
-  // currentDisplay store/display suffix(substring at the end) of currentSentence
+  let currentWord: string = "";
+  // currentDisplay store/display suffix(substring at the end) of currentWord
   let currentDisplay: string = "";
-  let sentenceCount: number = 0;
+  let wordCount: number = 0;
+  let characterCount: number = 0;
+  let start = false;
+  let seconds = 60;
 
   onMount(() => {
     console.log("here");
-    sentences = randomWords(10);
-    currentSentence = sentences[0];
-    currentDisplay = sentences[0];
+    words = randomWords(10);
+    currentWord = words[0];
+    currentDisplay = words[0];
   });
+
+  let countDown = function () {
+    start = true;
+    let timer = setInterval(() => {
+      seconds--;
+      if (seconds === 0) {
+        clearInterval(timer);
+        document
+          .getElementById("editable")
+          ?.setAttribute("contenteditable", "false");
+        document
+          .getElementById("score-overlay")
+          ?.setAttribute("style", "visibility:visible");
+      }
+    }, 1000);
+  };
 </script>
 
 <svelte:head>
@@ -27,79 +46,88 @@
 <div id="typing-test-page">
   <h1>Test your typing skills</h1>
   <div id="score">
-    <span>sentence count: {sentenceCount}</span>
     <button id="reload" on:click={() => location.reload()}>
       <img src={reload} alt="Reload Page" />
     </button>
+    <span>sentence count: {wordCount}</span>
+    <span>character count: {characterCount}</span>
+    <span>wpm: {characterCount / 5}</span>
+    <span>count down: {seconds}</span>
   </div>
-  <div
-    id="typing"
-    on:click={() => {
-      document.getElementById("editable")?.focus();
-    }}
-    on:keydown
-  >
-    <div id="typed">
-      {#each typedSentences as p}
-        <span class={p.class}>{p.typed}</span>
-      {/each}
-      <span
-        contenteditable="true"
-        id="editable"
-        spellcheck="false"
-        data-focus=""
-        autocapitalize="none"
-        class={currentSentence.startsWith(input) ? "" : "wrong"}
-        bind:textContent={input}
-        on:keydown={(e) => {
-          if (
-            e.key === "Enter" ||
-            ((e.key === " " || e.keyCode === 32 || e.which === 32) &&
-              input === "") ||
-            (e.key === "Backspace" && input === "")
-          ) {
-            e.preventDefault();
-            return;
-          }
-
-          if (e.key == " " && input !== " ") {
-            e.preventDefault();
-            let temp = "wrong";
-            if (currentSentence == input) {
-              temp = "";
-              sentenceCount++;
+  <div id="typing-container">
+    <div id="score-overlay" />
+    <div
+      id="typing"
+      on:click={() => {
+        document.getElementById("editable")?.focus();
+      }}
+      on:keydown
+    >
+      <div id="typed">
+        {#each typedWords as p}
+          <span class={p.class}>{p.typed}</span>
+        {/each}
+        <span
+          contenteditable="true"
+          id="editable"
+          spellcheck="false"
+          data-focus=""
+          autocapitalize="none"
+          class={currentWord.startsWith(input) ? "" : "wrong"}
+          bind:textContent={input}
+          on:paste={(e) => e.preventDefault()}
+          on:keydown={(e) => {
+            if (!start) countDown();
+            if (
+              e.key === "Enter" ||
+              ((e.key === " " || e.keyCode === 32 || e.which === 32) &&
+                input === "") ||
+              (e.key === "Backspace" && input === "")
+            ) {
+              e.preventDefault();
+              return;
             }
-            const word = {
-              typed: input,
-              class: temp,
-            };
-            typedSentences = [...typedSentences, word];
-            input = "";
-            sentences = sentences.slice(1);
-            currentSentence = sentences[0];
-            currentDisplay = sentences[0];
-            if (sentences.length <= 15) {
-              sentences = [...sentences, ...randomWords(10)];
-            }
-            return;
-          }
-        }}
-        on:input={() => {
-          if (currentSentence.startsWith(input)) {
-            currentDisplay = currentSentence.replace(input, "");
-          }
-        }}
-      />
-    </div>
 
-    <div id="new-sentence">
-      {#each sentences as pword, i}
-        {#if i == 0}
-          <span>{currentDisplay}</span>
-        {:else}
-          <span>{pword}</span>
-        {/if}
-      {/each}
+            if (e.key == " " && input !== " ") {
+              e.preventDefault();
+              let temp = "wrong";
+              if (currentWord == input) {
+                temp = "";
+                wordCount++;
+                characterCount += currentWord.length;
+              }
+              const word = {
+                typed: input,
+                class: temp,
+              };
+              typedWords = [...typedWords, word];
+              input = "";
+              words = words.slice(1);
+              currentWord = words[0];
+              currentDisplay = words[0];
+              if (words.length <= 15) {
+                words = [...words, ...randomWords(10)];
+              }
+              return;
+            }
+          }}
+          on:input={() => {
+            if (currentWord.startsWith(input)) {
+              currentDisplay = currentWord.replace(input, "");
+            }
+          }}
+        />
+      </div>
+
+      <div id="new-sentence">
+        {#each words as pword, i}
+          {#if i == 0}
+            <span>{currentDisplay}</span>
+          {:else}
+            <span>{pword}</span>
+          {/if}
+        {/each}
+      </div>
     </div>
   </div>
 </div>
@@ -135,24 +163,37 @@
     padding-right: 8px;
   }
 
-  #typing {
+  #typing-container {
     max-width: 80%;
     min-width: 80%;
-    border-style: solid;
+    margin-top: 20px;
+    position: relative;
+  }
+  #typing-container > div {
     border-radius: 10px;
+  }
+  #typing {
+    border-style: solid;
     border-width: 1px;
     display: grid;
     grid-template-columns: 50% 50%;
     white-space: nowrap;
     padding-right: 20px;
     padding-left: 20px;
-    margin-top: 20px;
+    line-height: 3.5;
+    font-size: 1.8rem;
     border-color: var(--color-theme-1);
     background: var(--color-bg-2);
     color: var(--color-text);
     box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.25);
-    line-height: 3.5;
-    font-size: 1.8rem;
+  }
+
+  #score-overlay {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    min-height: 100%;
+    min-width: 100%;
+    visibility: hidden;
   }
 
   #typing > div {
@@ -161,6 +202,7 @@
 
   #editable {
     caret-color: black;
+    caret-color: rgb(255, 185, 129);
     background: none;
     outline: none;
     border-width: 0px;
