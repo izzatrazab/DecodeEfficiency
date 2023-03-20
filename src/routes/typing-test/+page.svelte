@@ -49,13 +49,14 @@
     <button id="reload" on:click={() => location.reload()}>
       <img src={reload} alt="Reload Page" />
     </button>
-    <span>sentence count: {wordCount}</span>
-    <span>character count: {characterCount}</span>
-    <span>wpm: {characterCount / 5}</span>
     <span>count down: {seconds}</span>
   </div>
   <div id="typing-container">
-    <div id="score-overlay" />
+    <div id="score-overlay">
+      <span>wpm: {characterCount / 5}</span>
+      <span>word count: {wordCount}</span>
+      <span>character count: {characterCount}</span>
+    </div>
     <div
       id="typing"
       on:click={() => {
@@ -190,9 +191,13 @@
 
   #score-overlay {
     position: absolute;
-    background: rgba(255, 255, 255, 0.8);
     min-height: 100%;
     min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.8);
     visibility: hidden;
   }
 
