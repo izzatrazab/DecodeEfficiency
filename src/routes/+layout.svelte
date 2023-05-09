@@ -29,22 +29,41 @@
 </main>
 <hr />
 <footer>
-	<div class="container">
-		<p>
-			<small>
-				Please feel free to email me for any inquiries at
-				<b>
-					<a href="mailto: izzatrazab@gmail.com">izzatrazab@gmail.com</a>
-				</b>
-				.
-			</small>
-		</p>
-		<a href="https://github.com/izzatrazab" target="_blank">
-			<img class="logo" src={githubLogo} alt="github" />
-		</a>
-		<a href="https://www.frontendmentor.io/profile/izzatrazab" target="_blank">
-			<img class="logo" src={frontEndLogo} alt="github" />
-		</a>
+	<div class="container" id="footer">
+		<small>
+			This is my website built using
+			<a
+				href="https://svelte.dev"
+				target="_blank"
+				rel="noreferrer"
+				style="color:#FF6432; text-shadow:0 0 1px #FF835A"
+			>
+				Svelte
+			</a>
+			and
+			<a
+				href="https://picocss.com/"
+				target="_blank"
+				rel="noreferrer"
+				style="color:lightsteelblue; text-shadow: 0 0 1px #99CCFF "
+			>
+				Pico CSS.
+			</a>
+			<br>
+			Please feel free to email me for any inquiries at
+			<b>
+				<a href="mailto: izzatrazab@gmail.com">izzatrazab@gmail.com</a>
+			</b>
+			.
+		</small>
+		<div>
+			<a href="https://github.com/izzatrazab" target="_blank">
+				<img class="logo" src={githubLogo} alt="github" />
+			</a>
+			<a href="https://www.frontendmentor.io/profile/izzatrazab" target="_blank">
+				<img class="logo" src={frontEndLogo} alt="github" />
+			</a>
+		</div>
 	</div>
 </footer>
 
@@ -69,12 +88,23 @@
 	footer > div {
 		margin-bottom: 0;
 	}
-	footer > div > p {
-		margin-bottom: 0;
+	#footer {
+		display: flex;
+	}
+	#footer > small {
+		flex: 0.8;
+	}
+	#footer > div {
+		flex: 0.2;
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+		align-items: center;
 	}
 	.logo {
+		box-sizing: content-box;
 		aspect-ratio: 1;
 		height: 24px;
-        margin-right: 15px;
+		padding: 5px;
 	}
 </style>
