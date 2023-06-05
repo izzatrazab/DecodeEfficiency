@@ -9,29 +9,18 @@
 	<nav class="container">
 		<ol>
 			<li>
-				<a href="/">Home</a>
-			</li>
-			<li>
-				<a href="/skills">Skills</a>
-			</li>
-			<li>
-				<a href="/projects">Projects</a>
-			</li>
-			<li>
-				<a href="/about-me">About Me</a>
+				<a href="/">DECODING EFFICIENCY</a>
 			</li>
 		</ol>
 	</nav>
-	<hr />
 </header>
 <main class="container">
 	<slot />
 </main>
-<hr />
 <footer>
 	<div class="container" id="footer">
 		<small>
-			This is my website built using
+			This website is built using
 			<a
 				href="https://svelte.dev"
 				target="_blank"
@@ -49,8 +38,8 @@
 			>
 				Pico CSS.
 			</a>
-			<br>
-			Please feel free to email me for any inquiries at
+			<br />
+			Feel free to email me for any inquiries at
 			<b>
 				<a href="mailto: izzatrazab@gmail.com">izzatrazab@gmail.com</a>
 			</b>
@@ -69,25 +58,30 @@
 
 <style>
 	header {
-		background: #050708;
+		background: #05070891;
 	}
-	hr {
-		margin: 0;
+	nav {
+		justify-content: center;
+	}
+	nav ol {
+		font-size: medium;
+		font-weight: 700;
 	}
 
 	main {
 		margin-top: 16px;
 		flex-grow: 1;
 	}
-
 	footer {
-		background: #050708;
+		background:#050708;
 		padding-top: 18px;
 		padding-bottom: 18px;
 	}
+
 	footer > div {
 		margin-bottom: 0;
 	}
+
 	#footer {
 		display: flex;
 	}
