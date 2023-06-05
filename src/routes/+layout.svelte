@@ -9,7 +9,7 @@
 	<nav class="container">
 		<ol>
 			<li>
-				<a href="/">DECODING EFFICIENCY</a>
+				<a href="/"  title="HOME">DECODING EFFICIENCY</a>
 			</li>
 		</ol>
 	</nav>
