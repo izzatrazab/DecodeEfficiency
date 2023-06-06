@@ -1,7 +1,11 @@
 <script lang="ts" context="module">
-    export const category = 'test'
+	import type { Post } from '$lib/types'
+	export const post: Post = {
+		title: 'test',
+		slug: 'test',
+		description: 'description',
+		date: '2023',
+		categories: ['sveltekit', 'svelte'],
+		published: false
+	}
 </script>
-
-<h1>second post</h1>
-{category}
-<h1>second jpost</h1>

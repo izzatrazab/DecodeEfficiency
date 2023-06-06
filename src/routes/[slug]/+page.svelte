@@ -1,10 +1,14 @@
 <script lang="ts">
-    export let data
+	import type { Post } from '$lib/types.js'
+
+	export let data
+	const post: Post = data.post
 </script>
 
-<svelte:head>
-</svelte:head>
+<svelte:head />
 <article>
-    <svelte:component this={data.content}/>
-{data.category}
+	<h1>
+		{post.title}
+	</h1>
+	<svelte:component this={data.content} />
 </article>

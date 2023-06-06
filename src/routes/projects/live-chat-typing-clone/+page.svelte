@@ -1,4 +1,5 @@
 <script lang="ts">
-  import Livechat from "./livechat.svelte";
+	import Livechat from './livechat.svelte'
 </script>
-<Livechat/>
+
+<Livechat />

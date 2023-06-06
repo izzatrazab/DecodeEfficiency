@@ -1,7 +1,7 @@
 <script lang="ts">
-	import svelteLogo from '$lib/logo/svelte.svg';
-	import picoLogo from '$lib/logo/pico.svg';
-	import { moreExperienceTools, lessExperienceTools } from '$lib/db';
+	import svelteLogo from '$lib/logo/svelte.svg'
+	import picoLogo from '$lib/logo/pico.svg'
+	import { moreExperienceTools, lessExperienceTools } from '$lib/db'
 </script>
 
 <svelte:head>
@@ -12,10 +12,10 @@
 	<h3>Skills</h3>
 	<section class="flex">
 		{#each moreExperienceTools.tools as tool}
-		<article>
-			<img src={tool.logo} alt="" />
-			<p>{tool.description}</p>
-		</article>
+			<article>
+				<img src={tool.logo} alt="" />
+				<p>{tool.description}</p>
+			</article>
 		{/each}
 	</section>
 </section>
@@ -35,7 +35,7 @@
 	header {
 		text-align: center;
 	}
-	.flex{
+	.flex {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
@@ -55,7 +55,7 @@
 		min-width: 100px;
 	}
 
-	article > p{
+	article > p {
 		margin: 0;
 	}
 </style>

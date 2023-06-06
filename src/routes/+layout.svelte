@@ -1,15 +1,21 @@
 <script lang="ts">
-	import '@picocss/pico';
-	import githubLogo from '$lib/logo/github.svg';
-	import frontEndLogo from '$lib/logo/frontend-mentor.svg';
-	import { page } from '$app/stores';
+	import '@picocss/pico'
+	import githubLogo from '$lib/logo/github.svg'
+	import frontEndLogo from '$lib/logo/frontend-mentor.svg'
+	import 'iconify-icon'
 </script>
 
 <header>
 	<nav class="container">
 		<ol>
-			<li>
-				<a href="/"  title="HOME">DECODING EFFICIENCY</a>
+			<li class="home">
+				<a href="/" title="HOME">DECODING EFFICIENCY</a>
+			</li>
+			<li class="filter">
+				<a href="https://github.com/izzatrazab" target="_blank">
+					<iconify-icon icon="uiw:filter" style="color: var(--color)" />
+					Filter
+				</a>
 			</li>
 		</ol>
 	</nav>
@@ -34,7 +40,7 @@
 				href="https://picocss.com/"
 				target="_blank"
 				rel="noreferrer"
-				style="color:lightsteelblue; text-shadow: 0 0 1px #99CCFF "
+				style="color:var(--contrast-hover); text-shadow: 0 0 1px #99CCFF "
 			>
 				Pico CSS.
 			</a>
@@ -57,23 +63,32 @@
 </footer>
 
 <style>
-	header {
-		background: #05070891;
-	}
 	nav {
 		justify-content: center;
 	}
-	nav ol {
+	ol {
+		width: 100%;
 		font-size: medium;
 		font-weight: 700;
+		text-align: center;
+		position: relative;
 	}
-
+	.home {
+		display: inline-block;
+		position: relative;
+	}
+	.filter {
+		position: absolute;
+		right: 0;
+	}
+	.filter a * {
+		vertical-align: middle;
+	}
 	main {
 		margin-top: 16px;
 		flex-grow: 1;
 	}
 	footer {
-		background:#050708;
 		padding-top: 18px;
 		padding-bottom: 18px;
 	}
@@ -100,5 +115,15 @@
 		aspect-ratio: 1;
 		height: 24px;
 		padding: 5px;
+	}
+
+	@media (max-width: 400px) {
+		ol {
+			display: flex;
+			justify-content: space-between;
+		}
+		.filter {
+			position: static;
+		}
 	}
 </style>

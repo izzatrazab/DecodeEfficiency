@@ -1,37 +1,37 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import randomWords from 'random-words';
-	import reload from '$lib/images/reload.svg';
+	import { onMount } from 'svelte'
+	import randomWords from 'random-words'
+	import reload from '$lib/images/reload.svg'
 
-	let words: string[] = [];
-	let typedWords: { typed: string; class: string }[] = [];
-	let input: string = '';
-	let currentWord: string = '';
+	let words: string[] = []
+	let typedWords: { typed: string; class: string }[] = []
+	let input: string = ''
+	let currentWord: string = ''
 	// currentDisplay store/display suffix(substring at the end) of currentWord
-	let currentDisplay: string = '';
-	let wordCount: number = 0;
-	let characterCount: number = 0;
-	let start = false;
-	let seconds = 60;
+	let currentDisplay: string = ''
+	let wordCount: number = 0
+	let characterCount: number = 0
+	let start = false
+	let seconds = 60
 
 	onMount(() => {
-		console.log('here');
-		words = randomWords(10);
-		currentWord = words[0];
-		currentDisplay = words[0];
-	});
+		console.log('here')
+		words = randomWords(10)
+		currentWord = words[0]
+		currentDisplay = words[0]
+	})
 
 	let countDown = function () {
-		start = true;
+		start = true
 		let timer = setInterval(() => {
-			seconds--;
+			seconds--
 			if (seconds === 0) {
-				clearInterval(timer);
-				document.getElementById('editable')?.setAttribute('contenteditable', 'false');
-				document.getElementById('score-overlay')?.setAttribute('style', 'visibility:visible');
+				clearInterval(timer)
+				document.getElementById('editable')?.setAttribute('contenteditable', 'false')
+				document.getElementById('score-overlay')?.setAttribute('style', 'visibility:visible')
 			}
-		}, 1000);
-	};
+		}, 1000)
+	}
 </script>
 
 <svelte:head>
@@ -67,7 +67,7 @@
 		<div
 			id="typing"
 			on:click={() => {
-				document.getElementById('editable')?.focus();
+				document.getElementById('editable')?.focus()
 			}}
 			on:keydown
 		>
@@ -85,42 +85,42 @@
 					bind:textContent={input}
 					on:paste={(e) => e.preventDefault()}
 					on:keydown={(e) => {
-						if (!start) countDown();
+						if (!start) countDown()
 						if (
 							e.key === 'Enter' ||
 							((e.key === ' ' || e.keyCode === 32 || e.which === 32) && input === '') ||
 							(e.key === 'Backspace' && input === '')
 						) {
-							e.preventDefault();
-							return;
+							e.preventDefault()
+							return
 						}
 
 						if (e.key == ' ' && input !== ' ') {
-							e.preventDefault();
-							let temp = 'wrong';
+							e.preventDefault()
+							let temp = 'wrong'
 							if (currentWord == input) {
-								temp = '';
-								wordCount++;
-								characterCount += currentWord.length;
+								temp = ''
+								wordCount++
+								characterCount += currentWord.length
 							}
 							const word = {
 								typed: input,
 								class: temp
-							};
-							typedWords = [...typedWords, word];
-							input = '';
-							words = words.slice(1);
-							currentWord = words[0];
-							currentDisplay = words[0];
-							if (words.length <= 15) {
-								words = [...words, ...randomWords(10)];
 							}
-							return;
+							typedWords = [...typedWords, word]
+							input = ''
+							words = words.slice(1)
+							currentWord = words[0]
+							currentDisplay = words[0]
+							if (words.length <= 15) {
+								words = [...words, ...randomWords(10)]
+							}
+							return
 						}
 					}}
 					on:input={() => {
 						if (currentWord.startsWith(input)) {
-							currentDisplay = currentWord.replace(input, '');
+							currentDisplay = currentWord.replace(input, '')
 						}
 					}}
 				/>
