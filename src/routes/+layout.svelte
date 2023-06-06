@@ -3,6 +3,8 @@
 	import githubLogo from '$lib/logo/github.svg'
 	import frontEndLogo from '$lib/logo/frontend-mentor.svg'
 	import 'iconify-icon'
+
+	let dialog: boolean = false
 </script>
 
 <header>
@@ -12,7 +14,13 @@
 				<a href="/" title="HOME">DECODING EFFICIENCY</a>
 			</li>
 			<li class="filter">
-				<a href="https://github.com/izzatrazab" target="_blank">
+				<!-- svelte-ignore a11y-invalid-attribute -->
+				<a
+					href=""
+					on:click={() => {
+						dialog = true
+					}}
+				>
 					<iconify-icon icon="ic:twotone-category" style="color: var(--color)" />
 					CATEGORY
 				</a>
@@ -23,6 +31,13 @@
 <main class="container">
 	<slot />
 </main>
+<dialog open={dialog}>
+	<p>Greetings, one and all!</p>
+	<form method="dialog">
+		<button on:click={()=> dialog = false}>OK</button>
+	</form>
+</dialog>
+
 <footer>
 	<div class="container" id="footer">
 		<small>
@@ -81,7 +96,7 @@
 		position: absolute;
 		right: 0;
 	}
-	.filter a{
+	.filter a {
 		display: flex;
 		align-items: center;
 		gap: 10px;
