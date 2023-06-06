@@ -13,8 +13,8 @@
 			</li>
 			<li class="filter">
 				<a href="https://github.com/izzatrazab" target="_blank">
-					<iconify-icon icon="uiw:filter" style="color: var(--color)" />
-					Filter
+					<iconify-icon icon="ic:twotone-category" style="color: var(--color)" />
+					CATEGORY
 				</a>
 			</li>
 		</ol>
@@ -81,8 +81,10 @@
 		position: absolute;
 		right: 0;
 	}
-	.filter a * {
-		vertical-align: middle;
+	.filter a{
+		display: flex;
+		align-items: center;
+		gap: 10px;
 	}
 	main {
 		margin-top: 16px;
