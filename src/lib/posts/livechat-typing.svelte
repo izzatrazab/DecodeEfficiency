@@ -2,9 +2,9 @@
 	import type { Post } from '$lib/types'
 
 	export const metadata: Omit<Post, 'slug'> = {
-		title: 'Test',
-		description: 'description',
-		date: '2023',
+		title: 'Test2',
+		description: 'description2',
+		date: '2024',
 		categories: ['sveltekit', 'svelte'],
 		published: true
 	}
