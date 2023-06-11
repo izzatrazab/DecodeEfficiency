@@ -1,6 +1,6 @@
 import type { Post } from '$lib/types'
 
-export async function load({ params , fetch}) {
+export async function load({ params}) {
 	const response = await fetch('../../api/posts', {
 		method: 'POST',
 		body: JSON.stringify({
@@ -10,5 +10,4 @@ export async function load({ params , fetch}) {
 
 	const posts: Post[] = await response.json()
 	return {posts}
-	// return { posts }
 }
