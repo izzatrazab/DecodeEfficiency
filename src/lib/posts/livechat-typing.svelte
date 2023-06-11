@@ -5,7 +5,7 @@
 		title: 'Test2',
 		description: 'description2',
 		date: '2024',
-		categories: ['sveltekit', 'svelte'],
+		categories: ['sveltekit', 'svelte', 'project'],
 		published: true
 	}
 </script>
