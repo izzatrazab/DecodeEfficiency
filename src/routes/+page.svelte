@@ -6,5 +6,10 @@
 	<title>Home</title>
 </svelte:head>
 
-{JSON.stringify(data)}
-<p>here fetch list of article</p>
+<ol>
+	{#each data.posts as datum}
+		<li>
+			<a href="/{datum.slug}">{datum.title}</a>
+		</li>
+	{/each}
+</ol>

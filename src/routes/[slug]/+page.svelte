@@ -1,11 +1,10 @@
 <script lang="ts">
+	import type { Post } from '$lib/types.js'
 	export let data
+	let metadata: Post = data.metadata
 </script>
 
 <svelte:head />
 <article>
-	<h1>
-		{JSON.stringify(data.metadata)}
-	</h1>
 	<svelte:component this={data.component} />
 </article>

@@ -3,7 +3,7 @@ import { error } from '@sveltejs/kit'
 
 export async function load({ params }) {
 	try {
-		const post: {metadata:Post,default:any} = await import(`../../lib/posts/${params.slug}.svelte`)
+		const post: {metadata:Post,default:any} = await import(`../../lib/posts/${params.slug}/${params.slug}.svelte`)
 		post.metadata['slug'] = params.slug
 
 		return {
