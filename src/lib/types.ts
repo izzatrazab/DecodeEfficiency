@@ -1,5 +1,5 @@
-export type Categories = 'sveltekit' | 'svelte' | 'project'
-export const categories : string[]= ['sveltekit','svelte', 'project']
+export type Categories = 'clone'|'project'|'sveltekit' | 'svelte'  
+export const categories : Categories[]= ['clone', 'project','sveltekit','svelte']
 export type Post = {
 	title: string
 	slug: string
