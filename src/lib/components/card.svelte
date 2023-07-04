@@ -1,25 +1,41 @@
 <script lang="ts">
 	export let title: string = ''
 	export let description: string = ''
-    export let slug: string =''
+	export let slug: string = ''
 </script>
 
 <a href="/{slug}">
-	<section>
-		<p>
-			{title}
-		</p>
-		<p>
-			{description}
-		</p>
-	</section>
+	<article>
+		<hgroup>
+			<h3>
+				{title}
+			</h3>
+			<p>
+				{description}
+			</p>
+		</hgroup>
+	</article>
 </a>
 
 <style>
-	section {
-		aspect-ratio: 1;
-		background-color: red;
-		width: 100px;
-		margin: 10px;
+	a {
+		display: contents;
+	}
+	article {
+		aspect-ratio: 0.8;
+		transition: all .2s !important;
+		width: 280px;
+	}
+
+	hgroup > h3{
+		overflow: hidden;
+	}
+	hgroup > p{
+		height: 3em;
+	}
+	article:hover {
+		transform: scale(1.04);
+		border-style: solid;
+		border-color: var(--dropdown-border);
 	}
 </style>

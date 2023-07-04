@@ -1,15 +1,22 @@
 <script lang="ts">
+	import Card from '$lib/components/card.svelte'
 	export let data
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
-
-<ol>
+<section>
 	{#each data.posts as datum}
-		<li>
-			<a href="/{datum.slug}">{datum.title}</a>
-		</li>
+		<Card title={datum.slug} description={datum.description} slug={datum.slug} />
 	{/each}
-</ol>
+</section>
+<style>
+	
+	section{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+		justify-content: center;
+	}
+</style>
