@@ -2,11 +2,9 @@
 	import '@picocss/pico'
 	import githubLogo from '$lib/logo/github.svg'
 	import frontEndLogo from '$lib/logo/frontend-mentor.svg'
-	import 'iconify-icon'
 
 	let dialog: boolean = false
 </script>
-
 <header>
 	<nav class="container">
 		<ol>
@@ -14,16 +12,9 @@
 				<a href="/" title="HOME">DECODING EFFICIENCY</a>
 			</li>
 			<li class="filter">
-				<!-- svelte-ignore a11y-invalid-attribute -->
-				<a
-					href=""
-					on:click={() => {
-						dialog = true
-					}}
-				>
-					<iconify-icon icon="ic:twotone-category" style="color: var(--color)" />
+				<button on:click={() => (dialog = true)}>
 					CATEGORY
-				</a>
+				</button>
 			</li>
 		</ol>
 	</nav>
@@ -34,7 +25,7 @@
 <dialog open={dialog}>
 	<p>Greetings, one and all!</p>
 	<form method="dialog">
-		<button on:click={()=> dialog = false}>OK</button>
+		<button on:click={() => (dialog = false)}>OK</button>
 	</form>
 </dialog>
 
@@ -48,7 +39,7 @@
 				rel="noreferrer"
 				style="color:#FF6432; text-shadow:0 0 1px #FF835A"
 			>
-				Svelte
+				Sveltekit
 			</a>
 			and
 			<a
@@ -96,10 +87,12 @@
 		position: absolute;
 		right: 0;
 	}
-	.filter a {
-		display: flex;
-		align-items: center;
-		gap: 10px;
+	.filter > button {
+		background: none;
+		border: 0;
+		padding: 0;
+		font-size: inherit;
+		font-weight: inherit;
 	}
 	main {
 		margin-top: 16px;

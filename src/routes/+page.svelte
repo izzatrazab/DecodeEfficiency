@@ -4,16 +4,16 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Decode Efficiency</title>
 </svelte:head>
 <section>
 	{#each data.posts as datum}
 		<Card title={datum.slug} description={datum.description} slug={datum.slug} />
 	{/each}
 </section>
+
 <style>
-	
-	section{
+	section {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 20px;
