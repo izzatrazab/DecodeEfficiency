@@ -4,9 +4,9 @@
 	import TypingTest from './typing-test.svelte'
 	export const metadata: Omit<Post, 'slug'> = {
 		title: 'LiveChat Typing Test clone',
-		description: 'description2',
+		description: 'Lets clone LiveChat Typing Test app. Learn how a typing test works.',
 		date: '2024',
-		categories: ['sveltekit', 'svelte', 'clone'],
+		categories: ['sveltekit', 'svelte', 'clone', 'css'],
 		published: true
 	}
 </script>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '@picocss/pico'
 	import githubLogo from '$lib/logo/github.svg'
 	import frontEndLogo from '$lib/logo/frontend-mentor.svg'
 

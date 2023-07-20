@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Card from '$lib/components/card.svelte'
+	import Chips from '$lib/components/chips.svelte'
+	
 	export let data
 </script>
 
@@ -8,7 +10,9 @@
 </svelte:head>
 <section>
 	{#each data.posts as datum}
-		<Card title={datum.slug} description={datum.description} slug={datum.slug} />
+		<Card title={datum.title} description={datum.description} slug={datum.slug}>
+			<Chips arr={datum.categories}/>
+		</Card>
 	{/each}
 </section>
 

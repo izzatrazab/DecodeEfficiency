@@ -5,7 +5,7 @@
 </script>
 
 <a href="/{slug}">
-	<article>
+	<div class='card'>
 		<hgroup>
 			<h3>
 				{title}
@@ -14,14 +14,16 @@
 				{description}
 			</p>
 		</hgroup>
-	</article>
+		<slot/>
+	</div>
 </a>
 
 <style>
 	a {
 		display: contents;
+		color: white;
 	}
-	article {
+	div {
 		aspect-ratio: 0.8;
 		transition: all .2s !important;
 		width: 280px;
@@ -33,7 +35,7 @@
 	hgroup > p{
 		height: 3em;
 	}
-	article:hover {
+	div:hover {
 		transform: scale(1.04);
 		border-style: solid;
 		border-color: var(--dropdown-border);
