@@ -10,7 +10,7 @@
 </svelte:head>
 <section>
 	{#each data.posts as datum}
-		<Card title={datum.title} description={datum.description} slug={datum.slug}>
+		<Card title={datum.title} description={datum.description} slug={datum.slug} --card-background='red' >
 			<Chips arr={datum.categories}/>
 		</Card>
 	{/each}

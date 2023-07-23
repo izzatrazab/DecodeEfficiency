@@ -25,31 +25,6 @@ async function getPosts() {
     } catch (error) {
         console.log(error);
     }
-
-
-    // const paths = import.meta.glob('/src/lib/posts/*.svelte', { eager: true })
-
-
-
-    // for (const path in paths) {
-    //     const file = paths[path]
-    //     const slug = path.split('/').at(-1)?.replace('.svelte', '')
-
-    //     if (file && typeof file === 'object' && 'metadata' in file && slug) {
-    //         const metadata = file.metadata as Omit<Post, 'slug'>
-
-    //         if (!metadata.published) continue
-
-    //         const post = { ...metadata, slug } satisfies Post
-    //         posts.push(post)
-    //     }
-    // }
-
-    // posts = posts.sort((first, second) =>
-    //     new Date(second.date).getTime() - new Date(first.date).getTime()
-    // )
-
-    // return {}
 }
 
 async function getPostsbyCategory(category: string) {
@@ -58,18 +33,6 @@ async function getPostsbyCategory(category: string) {
     const paths = import.meta.glob('/src/lib/posts/*/*.svelte', { eager: true })
     for (const path in paths) {
         console.log(path);
-
-        // const file = paths[path]
-        // const slug = path.split('/').at(-1)?.replace('.svelte', '')
-
-        // if (file && typeof file === 'object' && 'metadata' in file && slug) {
-        //     const metadata = file.metadata as Omit<Post, 'slug'>
-
-        //     if (!(metadata.categories as string[]).includes(category)) continue
-        //     if (!metadata.published) continue
-        //     const post = { ...metadata, slug } satisfies Post
-        //     posts.push(post)
-        // }
     }
 
     posts = posts.sort((first, second) =>

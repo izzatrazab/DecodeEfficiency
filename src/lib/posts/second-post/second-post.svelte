@@ -6,7 +6,7 @@
 		description: 'description',
 		date: '2023',
 		categories: ['svelte'],
-		published: true
+		published: false
 	}
 </script>
 
