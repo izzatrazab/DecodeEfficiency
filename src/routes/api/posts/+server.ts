@@ -27,28 +27,7 @@ async function getPosts() {
     }
 }
 
-async function getPostsbyCategory(category: string) {
-    let posts: Post[] = []
-
-    const paths = import.meta.glob('/src/lib/posts/*/*.svelte', { eager: true })
-    for (const path in paths) {
-        console.log(path);
-    }
-
-    posts = posts.sort((first, second) =>
-        new Date(second.date).getTime() - new Date(first.date).getTime()
-    )
-
-    return posts
-}
-
 export async function GET() {
     const posts = await getPosts()
-    return json(posts)
-}
-
-export async function POST({ request }) {
-    const data = await request.json()
-    const posts = await getPostsbyCategory(data.category)
     return json(posts)
 }
