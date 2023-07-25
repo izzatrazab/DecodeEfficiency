@@ -22,10 +22,11 @@
 	<slot />
 </main>
 <dialog open={dialog}>
-	<p>Greetings, one and all!</p>
-	<form method="dialog">
-		<button on:click={() => (dialog = false)}>OK</button>
-	</form>
+	<div class="card">
+		<p>Greetings, one and all!</p>
+		<button on:click={() => dialog = false}>OK</button>
+	</div>
+
 </dialog>
 
 <footer>
