@@ -1,4 +1,5 @@
 import type { Categories, Post } from '$lib/types'
+import { categories } from '$lib/types'
 import { error } from '@sveltejs/kit'
 import fsp from 'fs/promises'
 
@@ -29,12 +30,18 @@ async function getPostsbyCategory(category: string) {
 
 export async function load({ params }) {
     try {
+        if (!categories.includes(params.category as Categories))
+            throw new Error("Category not Available");
+
+
         const posts: Post[] = await getPostsbyCategory(params.category)
         return { posts }
     } catch (e) {
         console.log(e);
+        
+
         throw error(404, {
-            message: params.category
+            message: "Category not Available"
         })
     }
 }

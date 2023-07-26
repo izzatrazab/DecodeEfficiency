@@ -1,9 +1,10 @@
 <script lang="ts">
 	import githubLogo from '$lib/logo/github.svg'
 	import frontEndLogo from '$lib/logo/frontend-mentor.svg'
-
+	import { categories } from '$lib/types'
 	let dialog: boolean = false
 </script>
+
 <header>
 	<nav class="container">
 		<ol>
@@ -11,9 +12,7 @@
 				<a href="/" title="HOME">DECODING EFFICIENCY</a>
 			</li>
 			<li class="filter">
-				<button on:click={() => (dialog = true)}>
-					CATEGORY
-				</button>
+				<button on:click={() => (dialog = true)}> CATEGORY </button>
 			</li>
 		</ol>
 	</nav>
@@ -22,11 +21,23 @@
 	<slot />
 </main>
 <dialog open={dialog}>
-	<div class="card">
-		<p>Greetings, one and all!</p>
-		<button on:click={() => dialog = false}>OK</button>
+	<div class="card" id="category-card" >
+		<header>
+			<span><strong>Categories:</strong></span>
+			<button on:click={() => (dialog = false)}>
+				✕
+			</button>
+		</header>
+		<div>
+			{#each categories as category}
+				<a href="/category/{category}" style="display: contents;">
+					<button class="outline" on:click={()=>dialog = false}>
+						{category}
+					</button>
+				</a>
+			{/each}
+		</div>
 	</div>
-
 </dialog>
 
 <footer>
@@ -125,6 +136,35 @@
 		aspect-ratio: 1;
 		height: 24px;
 		padding: 5px;
+	}
+
+	#category-card {
+		aspect-ratio: 1;
+		max-width: 400px;
+		border-radius: var(--border-radius);
+	}
+	#category-card > header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	#category-card > header > button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		border: none;
+		font-weight:bolder;
+		color: white !important;
+		background-color: rgba(128, 128, 128, 0.244);
+	}
+
+	#category-card > div {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
 	}
 
 	@media (max-width: 400px) {

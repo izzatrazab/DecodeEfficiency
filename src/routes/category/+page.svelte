@@ -1,7 +1,5 @@
 <script lang="ts">
-    import type { Categories } from '$lib/types'
     import {categories} from '$lib/types'
-	export let data
 </script>
 
 <svelte:head>
