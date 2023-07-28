@@ -1,16 +1,11 @@
 import type { Categories, Post } from '$lib/types'
 import { categories } from '$lib/types'
 import { error } from '@sveltejs/kit'
-import fsp from 'fs/promises'
-import path from 'path'
-
 import {list } from '$lib/posts/posts'
 const directories = list
 
 async function getPostsbyCategory(category: string) {
     let posts: Post[] = []
-    // const directory = path.join(process.cwd(), 'src/lib/posts/')
-    // const directories = await fsp.readdir(directory, { withFileTypes: false });
 
     for await (const dir of directories) {
         const file = await import(`../../../lib/posts/${dir}/${dir}.svelte`)
