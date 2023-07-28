@@ -1,11 +1,13 @@
 import type { Post } from "$lib/types";
 import fsp from 'fs/promises'
+import path from 'path'
 import { json } from "@sveltejs/kit"
 
 async function getPosts() {
     let posts: Post[] = []
     try {
-        const dirs = await fsp.readdir('./src/lib/posts/', { withFileTypes: true });
+        const directory = path.join(process.cwd(), 'src/lib/posts/')
+        const dirs = await fsp.readdir(directory, { withFileTypes: true });
         for await (const dir of dirs) {
             if (dir.isDirectory()) {
                 const file = await import(`../../../lib/posts/${dir.name}/${dir.name}.svelte`)
