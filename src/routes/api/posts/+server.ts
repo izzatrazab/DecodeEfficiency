@@ -10,7 +10,7 @@ async function getPosts() {
         // const directory = path.join(process.cwd(), 'src/lib/posts/')
         // const directory = path.resolve('posts/')
         // const dirs = await fsp.readdir(directory, { withFileTypes: true });
-        const dirs = await fsp.readdir('/', { withFileTypes: true });
+        const dirs = await fsp.readdir('/posts/', { withFileTypes: true });
         // console.log(dirs);
         
         for await (const dir of dirs) {
