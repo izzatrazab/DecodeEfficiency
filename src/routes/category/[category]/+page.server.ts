@@ -8,8 +8,7 @@ async function getPostsbyCategory(category: string) {
     let posts: Post[] = []
     const directory = path.join(process.cwd(), 'src/lib/posts/')
     const directories = await fsp.readdir(directory, { withFileTypes: false });
-    // const directories = await fsp.readdir('./src/lib/posts/', { withFileTypes: false });
-
+    
     for await (const dir of directories) {
         const file = await import(`../../../lib/posts/${dir}/${dir}.svelte`)
 
@@ -36,12 +35,10 @@ export async function load({ params }) {
         if (!categories.includes(params.category as Categories))
             throw new Error("Category not Available");
 
-
         const posts: Post[] = await getPostsbyCategory(params.category)
         return { posts }
     } catch (e) {
         console.log(e);
-        
 
         throw error(404, {
             message: "Category not Available"
