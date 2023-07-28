@@ -5,7 +5,7 @@ import fsp from 'fs/promises'
 
 async function getPostsbyCategory(category: string) {
     let posts: Post[] = []
-    const directories = await fsp.readdir('src/lib/posts/', { withFileTypes: false });
+    const directories = await fsp.readdir('./src/lib/posts/', { withFileTypes: false });
 
     for await (const dir of directories) {
         const file = await import(`../../../lib/posts/${dir}/${dir}.svelte`)
