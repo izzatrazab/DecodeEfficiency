@@ -52,15 +52,6 @@
 			>
 				Sveltekit
 			</a>
-			and
-			<a
-				href="https://picocss.com/"
-				target="_blank"
-				rel="noreferrer"
-				style="color:var(--contrast-hover); text-shadow: 0 0 1px #99CCFF "
-			>
-				Pico CSS.
-			</a>
 			<br />
 			Feel free to email me for any inquiries at
 			<b>
