@@ -51,13 +51,12 @@
 				style="color:#FF6432; text-shadow:0 0 1px #FF835A"
 			>
 				Sveltekit
-			</a>
+			</a>.
 			<br />
 			Feel free to email me for any inquiries at
 			<b>
-				<a href="mailto: izzatrazab@gmail.com">izzatrazab@gmail.com</a>
+				<a href="mailto: izzatrazab@gmail.com">izzatrazab@gmail.com</a>.
 			</b>
-			.
 		</small>
 		<div>
 			<a href="https://github.com/izzatrazab" target="_blank">
