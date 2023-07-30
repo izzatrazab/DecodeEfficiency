@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-	import Title from '$lib/components/title.svelte'
 	import type { Post } from '$lib/types'
 	import TypingTest from './typing-test.svelte'
 	

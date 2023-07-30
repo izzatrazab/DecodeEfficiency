@@ -118,13 +118,16 @@
 						((e.key === ' ' || e.keyCode === 32 || e.which === 32) && input === '') ||
 						(e.key === 'Backspace' && input === '')
 					) {
-						console.log('something1')
 						e.preventDefault()
-
 						return
 					}
-
-					if (e.key == ' ' && input !== ' ') {
+					if (e.key !== 'Backspace') {
+						totalKeyPressed++
+					}
+				}}
+				on:input={(e) => {
+					if (e.data === ' ' && input !== ' ') {
+						input = input.trimEnd()
 						e.preventDefault()
 						let temp = 'typo'
 						if (currentWord == input) {
@@ -148,11 +151,6 @@
 						return
 					}
 
-					if (e.key !== 'Backspace') {
-						totalKeyPressed++
-					}
-				}}
-				on:input={() => {
 					if (currentWord.startsWith(input)) {
 						totalCorrectKeyPressed++
 						currentDisplay = currentWord.replace(input, '')
@@ -255,8 +253,9 @@
 		padding-right: 8px;
 	}
 
-	#editable{
+	#editable {
 		display: inline-block;
+		outline: 0;
 	}
 
 	#typing {
