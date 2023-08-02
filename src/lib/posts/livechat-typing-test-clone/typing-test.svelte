@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
 	import randomWords from 'random-words'
+	import { onMount } from 'svelte'
 
 	const durationSeconds: number = 60
 	let words: string[] = []
@@ -67,6 +67,52 @@
 			e.preventDefault()
 		}
 	}
+
+	function onKeydown(e: any) {
+		if (!start) countDown()
+		if (
+			e.key === 'Enter' ||
+			((e.key === ' ' || e.keyCode === 32 || e.which === 32) && input === '') ||
+			(e.key === 'Backspace' && input === '')
+		) {
+			e.preventDefault()
+			return
+		}
+		if (e.key !== 'Backspace') {
+			totalKeyPressed++
+		}
+	}
+	function onInput(e: any) {
+		if (e.data === ' ' && input !== ' ') {
+			input = input.trimEnd()
+			e.preventDefault()
+			let temp = 'typo'
+			if (currentWord == input) {
+				temp = 'correct'
+				wordCount++
+				characterCount += currentWord.length
+			}
+			let word = {
+				typed: input,
+				class: temp
+			}
+			typedWords = [...typedWords, word]
+			input = ''
+			words = words.slice(1)
+			currentWord = words[0]
+			currentDisplay = words[0]
+			if (words.length <= 15) {
+				words = [...words, ...randomWords(10)]
+			}
+			accuracy = Math.trunc((totalCorrectKeyPressed / totalKeyPressed) * 100)
+			return
+		}
+		// need to check
+		if (currentWord.startsWith(input)) {
+			totalCorrectKeyPressed++
+			currentDisplay = currentWord.replace(input, '')
+		}
+	}
 </script>
 
 <section>
@@ -111,51 +157,8 @@
 				class={currentWord.startsWith(input) ? 'correct' : 'typo'}
 				bind:innerText={input}
 				on:paste={(e) => e.preventDefault()}
-				on:keydown={(e) => {
-					if (!start) countDown()
-					if (
-						e.key === 'Enter' ||
-						((e.key === ' ' || e.keyCode === 32 || e.which === 32) && input === '') ||
-						(e.key === 'Backspace' && input === '')
-					) {
-						e.preventDefault()
-						return
-					}
-					if (e.key !== 'Backspace') {
-						totalKeyPressed++
-					}
-				}}
-				on:input={(e) => {
-					if (e.data === ' ' && input !== ' ') {
-						input = input.trimEnd()
-						e.preventDefault()
-						let temp = 'typo'
-						if (currentWord == input) {
-							temp = 'correct'
-							wordCount++
-							characterCount += currentWord.length
-						}
-						let word = {
-							typed: input,
-							class: temp
-						}
-						typedWords = [...typedWords, word]
-						input = ''
-						words = words.slice(1)
-						currentWord = words[0]
-						currentDisplay = words[0]
-						if (words.length <= 15) {
-							words = [...words, ...randomWords(10)]
-						}
-						accuracy = Math.trunc((totalCorrectKeyPressed / totalKeyPressed) * 100)
-						return
-					}
-
-					if (currentWord.startsWith(input)) {
-						totalCorrectKeyPressed++
-						currentDisplay = currentWord.replace(input, '')
-					}
-				}}
+				on:keydown={(e) => onKeydown(e) }
+				on:input={(e) => onInput(e)}
 			/>
 			<br />
 		</div>
@@ -178,7 +181,7 @@
 				Your accuracy was <strong>{accuracy}%</strong>. Congratulations!
 			</p>
 			<br />
-			<input type="button" value="Try Again" id="btn" on:click={() => restart()} />
+			<input type="button" value="Try Again" on:click={() => restart()} />
 		</article>
 	</dialog>
 </section>
@@ -282,6 +285,6 @@
 
 	article > p > strong {
 		font-size: x-large;
-		color: var(--primary) !important;
+		color: var(--primary);
 	}
 </style>
