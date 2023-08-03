@@ -1,42 +1,24 @@
-# Table of Contents
-1. [Introduction](#introduction)
-2. [Setup](#setup)
-    - [Scaffold](#scaffold)
-    - [Package](#pakcage)
-3. [Major Layout](#major-layout)
-4. [Title](#title)
-5. [Scoreboard](#scoreboard)
-    - [Countdown](#countdown)
-    - [Readings](#readings)
-6. [Input Field](#input-field)
+---
+title: 'LiveChat Typing Test clone'
+meta:
+- {name: description, content: 'Typing Test'}
+- {name: keywords, content: 'typing test, learn by cloning app, countdown, randomWords pakcage'}
+description: 'LiveChat Typing Test app.'
+date: '2024-08-03'
+categories:
+- sveltekit
+- svelte
+- clone
+- css
+published: true
+---
 
-# Introduction
-- original application (liveChat typing test)
-- tools
+<script>
+	import TypingTest from './typing-test.svelte'
+    // Temporary after post is complete, combine into this file
+    // import Doc from './doc.md'
+</script>
 
-# Setup
+<TypingTest/>
 
-## 1. Scaffold
-```
-pnpm create svelte@latest livechat-typing-test-clone
-cd livechat-typing-test-clone
-pnpm install
-pnpm run dev
-```
-## Package
-random-word
-
-# Major Layout
-# Title
-# Scoreboard
-## Countdown
-## Readings
-# Input Field
-
-- Chunks
-1. major layout
-2. title
-3. scoreboard
-    1. countdown
-    2. readings
-4. input field
+<!-- <Doc/> -->

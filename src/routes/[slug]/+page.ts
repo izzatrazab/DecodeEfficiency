@@ -3,11 +3,9 @@ import { error } from '@sveltejs/kit'
 
 export async function load({ params }) {
 	try {
-		const post: {metadata:Post,default:any} = await import(`../../lib/posts/${params.slug}/${params.slug}.svelte`)
-		post.metadata['slug'] = params.slug
-
+		const post: {metadata:Post,default:any} = await import(`../../lib/posts/${params.slug}/${params.slug}.md`)
 		return {
-			component : post.default,
+			component: post.default,
 			metadata: post.metadata
 		}
 	} catch (e) {

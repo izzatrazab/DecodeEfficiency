@@ -1,6 +1,4 @@
 import type { Post } from "$lib/types";
-import fsp from 'fs/promises'
-import path from 'path'
 import { json } from "@sveltejs/kit"
 import { list } from '$lib/posts/posts'
 const postsNameList = list
@@ -9,7 +7,7 @@ async function getPosts() {
     let posts: Post[] = []
     try {
         for await (const dir of postsNameList) {
-            const file = await import(`../../../lib/posts/${dir}/${dir}.svelte`)
+            const file = await import(`../../../lib/posts/${dir}/${dir}.md`)
             if (file && typeof file === 'object' && 'metadata' in file) {
                 const metadata = file.metadata as Omit<Post, 'slug'>
 
