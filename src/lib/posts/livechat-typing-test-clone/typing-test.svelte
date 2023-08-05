@@ -3,18 +3,23 @@
 	import { onMount } from 'svelte'
 
 	const durationSeconds: number = 60
+	let seconds: number = durationSeconds
+	let start: boolean = false
+
 	let words: string[] = []
 	let typedWords: { typed: string; class: string }[] = []
 	let input: string = ''
 	let currentWord: string = ''
 	let currentDisplay: string = ''
+
 	let wordCount: number = 0
+	let trueCharacterCount: number = 0
 	let characterCount: number = 0
-	let start: boolean = false
-	let seconds: number = durationSeconds
+
 	let totalKeyPressed: number = 0
 	let totalCorrectKeyPressed: number = 0
 	let accuracy: number = 0
+
 	let scoreDialog: boolean = false
 	let editableSpanElement: HTMLSpanElement
 
@@ -56,6 +61,7 @@
 		totalCorrectKeyPressed = 0
 		accuracy = 0
 		wordCount = 0
+		trueCharacterCount = 0
 		characterCount = 0
 		editableSpanElement.setAttribute('contenteditable', 'true')
 		editableSpanElement.focus()
@@ -80,6 +86,7 @@
 		}
 		if (e.key !== 'Backspace') {
 			totalKeyPressed++
+			return
 		}
 	}
 	function onInput(e: any) {
@@ -91,6 +98,15 @@
 				temp = 'correct'
 				wordCount++
 				characterCount += currentWord.length
+				trueCharacterCount += currentWord.length
+			} else {
+				let temp = 0
+				for (let index = 0; index < currentWord.length; index++) {
+					if (currentWord[index] !== input[index])
+					break
+					temp++
+				}
+				trueCharacterCount += temp
 			}
 			let word = {
 				typed: input,
@@ -120,7 +136,7 @@
 	<div id="scoreboard">
 		<div id="readings">
 			<div>
-				<div>{characterCount}</div>
+				<div>{trueCharacterCount}</div>
 				<span>chars/min</span>
 			</div>
 			<div>
@@ -157,7 +173,7 @@
 				class={currentWord.startsWith(input) ? 'correct' : 'typo'}
 				bind:innerText={input}
 				on:paste={(e) => e.preventDefault()}
-				on:keydown={(e) => onKeydown(e) }
+				on:keydown={(e) => onKeydown(e)}
 				on:input={(e) => onInput(e)}
 			/>
 			<br />
@@ -176,7 +192,7 @@
 		<article>
 			<p>
 				Awesome! You type with the speed of
-				<strong>{characterCount / 5}WPM ({characterCount}CPM)</strong>.
+				<strong>{characterCount / 5}WPM ({trueCharacterCount}CPM)</strong>.
 				<br />
 				Your accuracy was <strong>{accuracy}%</strong>. Congratulations!
 			</p>
