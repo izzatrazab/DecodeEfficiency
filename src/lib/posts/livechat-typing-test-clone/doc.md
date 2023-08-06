@@ -2,40 +2,35 @@
 # Table of Contents
 
 # Introduction
-## LiveChat Typing Test
 
-![Alt text](/src/lib/posts/livechat-typing-test-clone/LiveChat%20typing%20test.png "a title")
+In this documentation, I will show you how I clone a typing speed test by [LiveChat](https://www.livechat.com/typing-speed-test/#/ "go to LiveChat typing speed test page"). I will divide this project to manageable chunks so it is easier to understand. I hope you will learn something out of this. Enjoy 🥳.
 
-- original application (liveChat typing test)
-- tools
+Screenshot below is the original application.
+
+![Alt text](/src/lib/posts/livechat-typing-test-clone/LiveChat%20typing%20test.png "original typing speed test by LiveChat")
+
+I used __Sveltekit__ (javascript framework) and __Pico CSS__ for the styles (note: demo above used Pico CSS but with slight modification, which I will not cover in this documentation as it is so small and does not changes much). 
 
 # Setup
 
-## 1. Scaffold
-```shell
-pnpm create svelte@latest livechat-typing-test-clone
-cd livechat-typing-test-clone
-pnpm install
-pnpm run dev
-```
+First, scaffold your Sveltekit project. Refer [here](https://kit.svelte.dev/docs/creating-a-project 'go to official documentation on how to scaffold a sveltekit project') if you don't know how. 
 
-## Package
-random-word
+Next, we need a package called [random-words](https://www.npmjs.com/package/random-words?activeTab=readme 'go to random-words page by npmjs').
+
+```shell
+npm i random-words
+```
 
 # Major Layout
 
-```javascript
-function preventSpacebarScrolling(e: any) {
-	if (e.keyCode == 32 && e.target == document.body) {
-		e.preventDefault()
-	}
-}
-```
-
 # Title
+
 # Scoreboard
+
 ## Countdown
+
 ## Readings
+
 # Input Field
 
 - Chunks
