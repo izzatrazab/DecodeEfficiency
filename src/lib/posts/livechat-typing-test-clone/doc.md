@@ -13,15 +13,24 @@ I used __Sveltekit__ (javascript framework) and __Pico CSS__ for the styles (not
 
 # Setup
 
-First, scaffold your Sveltekit project. Refer [here](https://kit.svelte.dev/docs/creating-a-project 'go to official documentation on how to scaffold a sveltekit project') if you don't know how. 
+1. Scaffold your Sveltekit project. Refer [here](https://kit.svelte.dev/docs/creating-a-project 'go to official documentation on how to scaffold a sveltekit project') if you don't know how. 
 
-Next, we need a package called [random-words](https://www.npmjs.com/package/random-words?activeTab=readme 'go to random-words page by npmjs').
+2. Install [Pico CSS](https://picocss.com/docs/ 'go to Pico CSS documentation').
 
 ```shell
-npm i random-words
+npm install @picocss/pico
 ```
 
-# Major Layout
+3. Install  [random-words](https://www.npmjs.com/package/random-words?activeTab=readme 'go to random-words page by npmjs') package. This package will provide list of random words to be typed. In your terminal:
+
+```shell
+npm install random-words
+```
+
+# Layouts
+
+First I set up Pico CSS
+
 
 # Title
 
