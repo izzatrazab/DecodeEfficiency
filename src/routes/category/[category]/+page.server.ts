@@ -8,7 +8,7 @@ async function getPostsbyCategory(category: string) {
     let posts: Post[] = []
 
     for await (const dir of directories) {
-        const file = await import(`../../../lib/posts/${dir}/${dir}.svelte`)
+        const file = await import(`../../../lib/posts/${dir}/${dir}.md`)
 
         if (file && typeof file === 'object' && 'metadata' in file) {
             const metadata = file.metadata as Omit<Post, 'slug'>
