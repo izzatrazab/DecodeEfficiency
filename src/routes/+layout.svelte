@@ -1,6 +1,5 @@
 <script lang="ts">
 	import githubLogo from '$lib/logo/github.svg'
-	import frontEndLogo from '$lib/logo/frontend-mentor.svg'
 	import { categories } from '$lib/types'
 	let dialog: boolean = false
 </script>
@@ -61,9 +60,6 @@
 		<div>
 			<a href="https://github.com/izzatrazab" target="_blank">
 				<img class="logo" src={githubLogo} alt="github" />
-			</a>
-			<a href="https://www.frontendmentor.io/profile/izzatrazab" target="_blank">
-				<img class="logo" src={frontEndLogo} alt="github" />
 			</a>
 		</div>
 	</div>
