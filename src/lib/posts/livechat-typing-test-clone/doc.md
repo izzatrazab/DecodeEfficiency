@@ -29,7 +29,34 @@ npm install random-words
 
 # Layouts
 
-First I set up Pico CSS
+First, inside head element of `app.html`, 
+
+![app.html](/src/lib/posts/livechat-typing-test-clone/Lay%2001.png 'app.html file')
+
+ I set the height of body element to:
+
+```html
+<style>
+    body{
+		margin: 0;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+    }
+</style>
+```
+
+`min-height: 100vh;` and `margin: 0;` ensure the height of the page will be 100% both in desktop and mobile. The rest are for centering the contents.
+
+## +layout.svelte
+
+Create +layout.svelte file in src directory. Here I will import Pico CSS and wrap the `<slot/>` with main element.
+
+![+layout.svelte](/src/lib/posts/livechat-typing-test-clone/Lay%2002.png)
+
+## Setup Pico CSS
 
 
 # Title
