@@ -1,5 +1,5 @@
 <script lang="ts">
-	import githubLogo from '$lib/logo/github.svg'
+	import Github from '$lib/logo/github.svelte'
 	import { categories } from '$lib/types'
 	let dialog: boolean = false
 </script>
@@ -20,17 +20,15 @@
 	<slot />
 </main>
 <dialog open={dialog}>
-	<div class="card" id="category-card" >
+	<div class="card" id="category-card">
 		<header>
 			<span><strong>Categories:</strong></span>
-			<button on:click={() => (dialog = false)}>
-				✕
-			</button>
+			<button on:click={() => (dialog = false)}> ✕ </button>
 		</header>
 		<div>
 			{#each categories as category}
 				<a href="/category/{category}" style="display: contents;">
-					<button class="outline" on:click={()=>dialog = false}>
+					<button class="outline" on:click={() => (dialog = false)}>
 						{category}
 					</button>
 				</a>
@@ -58,9 +56,7 @@
 			</b>
 		</small>
 		<div>
-			<a href="https://github.com/izzatrazab" target="_blank">
-				<img class="logo" src={githubLogo} alt="github" />
-			</a>
+			<Github size={40} />
 		</div>
 	</div>
 </footer>
@@ -142,7 +138,7 @@
 		aspect-ratio: 1;
 		border-radius: 50%;
 		border: none;
-		font-weight:bolder;
+		font-weight: bolder;
 		color: white !important;
 		background-color: rgba(128, 128, 128, 0.244);
 	}
