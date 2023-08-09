@@ -52,12 +52,27 @@ First, inside head element of `app.html`,
 
 ## +layout.svelte
 
-Create +layout.svelte file in src directory. Here I will import Pico CSS and wrap the `<slot/>` with main element.
+I created +layout.svelte file in src directory.
 
-![+layout.svelte](/src/lib/posts/livechat-typing-test-clone/Lay%2002.png)
+![+layout.svelte](/src/lib/posts/livechat-typing-test-clone/Lay%2003.png)
+
+ Here I import Pico CSS and wrap the `<slot/>` inside main element.
+
+```svelte
+<script lang='ts'>
+    import '@picocss/pico/css/pico.css'
+</script>
+
+<main style="display: contents;">
+    <slot/>
+</main>
+```
+
+`display: contents;` ? reason: reduce unnecessary element
+
+ To be honest I want to remove main element because I didn't have other elements to put inside body element (Imagine, only __ONE__ box in a box. It does not make sense unless you have multiple boxes in a box). But If I do remove that, I will lose main landmark. So I use `display: contents;` to ignore main element without losing the landmark.
 
 ## Setup Pico CSS
-
 
 # Title
 
