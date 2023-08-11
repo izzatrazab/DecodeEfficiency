@@ -16,7 +16,7 @@ published: true
 <script>
 	import TypingTest from './typing-test.svelte'
     // Temporary after post is complete, combine into this file
-    // import Doc from './doc.md'
+    // import Doc from './documentation.md'
 </script>
 
 <TypingTest/>
