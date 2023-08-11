@@ -110,6 +110,13 @@ h1.title::first-letter{ /* only first letter capitalize */
 
 ![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-01.png)
 
+## Scoreboard Layout
+
+In the original scoreboard, countdown is at the left in desktop view. When in mobile view, the countdown is at the bottom.
+
+![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-02.png)
+
+
 ## Countdown
 
 ## Readings
