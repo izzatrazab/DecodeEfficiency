@@ -98,6 +98,9 @@ and style them as below.
 
 ```css
 /* title */
+.title{
+    text-align: center; /* center text */
+}
 span.title{
     text-transform: uppercase; /* all uppercase */
 }
@@ -108,14 +111,14 @@ h1.title::first-letter{ /* only first letter capitalize */
 
 # Cloning the Scoreboard
 
-![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-01.png)
 
 ## Scoreboard Layout
 
 In the original scoreboard, countdown is at the left in desktop view. When in mobile view, the countdown is at the bottom.
 
-![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-02.png)
+![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-01.png)
 
+![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-02.png)
 
 ## Countdown
 
