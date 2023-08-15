@@ -11,6 +11,12 @@ Screenshot below is the original application.
 
 I used __Sveltekit__ (javascript framework) and __Pico CSS__ for the styles (note: demo above used Pico CSS but with slight modification, which I will not cover in this documentation as it is so small and does not changes much). 
 
+Note: To add or remove html elements / lines of codes / functions, I use these annotations:
+|Annotations|Means|
+|---|---|
+|✅|add|
+|❌|remove|
+
 # Setup
 
 1. Scaffold your Sveltekit project. Refer [here](https://kit.svelte.dev/docs/creating-a-project 'go to official documentation on how to scaffold a sveltekit project') if you don't know how. 
@@ -78,7 +84,7 @@ the page will center them.
 
 # Cloning the Title
 
-From this:
+from this:
 ![liveChat typing speed test title](/src/lib/posts/livechat-typing-test-clone/cloning-title-01.png)
 to this:
 ![clone title](/src/lib/posts/livechat-typing-test-clone/cloning-title-02.png)
@@ -114,11 +120,48 @@ h1.title::first-letter{ /* only first letter capitalize */
 
 ## Scoreboard Layout
 
-In the original scoreboard, countdown is at the left in desktop view. When in mobile view, the countdown is at the bottom.
-
+from this:
 ![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-01.png)
 
+to this:
 ![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-02.png)
+
+Notice in the original application's scoreboard, the countdown goes to the bottom in mobile view. I will use `flex-direction: row-reverse;` and arrange child elements in reverse so it behave the same way.
+
+
+`src > routes > +page.svelte`
+
+I add these elements (scores comes first):
+
+```html
+<div id="scoreboard">✅
+	<div>
+		<h1>Scores</h1>
+	</div>
+	<div>
+		<h1>Countdown</h1>
+	</div>
+</div>
+<h1>SCOREBOARD</h1>❌
+```
+
+and style it:
+
+```css
+#scoreboard {
+	display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: wrap;
+    justify-content: center;
+}
+
+#scoreboard > div {
+    padding-inline: 50px; /* temporary */
+}
+
+```
+
+
 
 ## Countdown
 
