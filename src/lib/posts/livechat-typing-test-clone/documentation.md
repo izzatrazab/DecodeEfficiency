@@ -156,11 +156,12 @@ and style it:
 }
 
 #scoreboard > div {
-    padding-inline: 50px; /* temporary */
+    padding-inline: 50px; /* temporary to add some gap*/
 }
 
 ```
 
+`flex-direction: row-reverse` __rearrange__ the children in __reverse__. That is why even though I put `Scores` above `Countdown`, it displays `Countdown` first. However, if __wrapping__ (width is too small it push the children below) occurs reverse will not work and it will display `Scores` first. This behaviour is exactly the same as the original application.
 
 
 ## Countdown
