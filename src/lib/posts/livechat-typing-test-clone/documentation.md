@@ -12,6 +12,7 @@ Screenshot below is the original application.
 I used __Sveltekit__ (javascript framework) and __Pico CSS__ for the styles (note: demo above used Pico CSS but with slight modification, which I will not cover in this documentation as it is so small and does not changes much). 
 
 Note: To add or remove html elements / lines of codes / functions, I use these annotations:
+
 |Annotations|Means|
 |---|---|
 |✅|add|
@@ -161,10 +162,14 @@ and style it:
 
 ```
 
-`flex-direction: row-reverse` __rearrange__ the children in __reverse__. That is why even though I put `Scores` above `Countdown`, it displays `Countdown` first. However, if __wrapping__ (width is too small it push the children below) occurs reverse will not work and it will display `Scores` first. This behaviour is exactly the same as the original application.
-
+`flex-direction: row-reverse` __rearrange__ the children in __reverse__. That is why even though I put __Scores__ above __Countdown__, it displays __Countdown__ first. However, if __wrapping__ occurs (width is too small it push the children below) the reverse will not work and it will display __Scores__ first. This behaviour is exactly the same as the original application.
 
 ## Countdown
+
+from this:
+![LiveChat typing speed test scoreboard](/src/lib/posts/livechat-typing-test-clone/cloning-scoreboard-03.png)
+
+to this:
 
 ## Readings
 
