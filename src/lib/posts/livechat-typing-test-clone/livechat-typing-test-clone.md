@@ -15,10 +15,15 @@ published: true
 
 <script>
 	import TypingTest from './typing-test.svelte'
-    // Temporary after post is complete, combine into this file
-    // import Doc from './documentation.md'
 </script>
 
 <TypingTest/>
 
-<!-- <Doc/> -->
+# what ?
+will update soon 🙂
+# why ?
+will update soon 😅
+# how to use ?
+will update soon 😥
+# how to make ?
+will update soon 😭 really I promise 
