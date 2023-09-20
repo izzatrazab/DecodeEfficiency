@@ -20,7 +20,7 @@
 
 <style>
 	a {
-		display: contents;
+		text-decoration: none;
 		color: white;
 	}
 	div {
@@ -35,7 +35,9 @@
 	hgroup > p{
 		height: 3em;
 	}
-	div:hover {
+	a:focus div,
+	div:hover{
+		text-decoration: none;
 		transform: scale(1.04);
 		border-style: solid;
 		border-color: var(--dropdown-border);
