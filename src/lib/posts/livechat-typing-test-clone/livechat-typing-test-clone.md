@@ -19,11 +19,14 @@ published: true
 
 <TypingTest/>
 
-# what ?
-will update soon 🙂
-# why ?
-will update soon 😅
-# how to use ?
-will update soon 😥
-# how to make ?
-will update soon 😭 really I promise 
+This project is a clone of the typing speed test by LiveChat. You can check out the original application here: [LiveChat Typing Test](https://www.livechat.com/typing-speed-test/#/)
+
+![LiveChat Typing Test screenshot](/src/lib/posts/livechat-typing-test-clone/LiveChat%20typing%20test.png)
+*Screenshot of Typing Speed Test by LiveChat*
+
+<!-- Here are explanations on some parts of this project.
+## Typing Field:
+
+Using 3 variables, I separate typed words, current word to be typed, and untyped words.
+Each words is put inside a span element. 
+It consist of span elements for each words. One span element will serve as the input text field by using contenteditable attributes.  -->

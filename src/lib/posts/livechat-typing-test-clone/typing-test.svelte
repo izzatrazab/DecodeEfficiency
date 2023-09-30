@@ -153,6 +153,7 @@
 			seconds
 		</div>
 	</div>
+<!-- sdfsdfs -->
 	<div
 		id="typing"
 		on:keydown
@@ -176,7 +177,7 @@
 				on:keydown={(e) => onKeydown(e)}
 				on:input={(e) => onInput(e)}
 			/>
-			<br />
+			<!-- <br /> -->
 		</div>
 		<div id="new-sentence">
 			{#each words as pword, i}
