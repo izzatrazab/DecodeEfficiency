@@ -113,13 +113,6 @@
 		flex-wrap: wrap;
 		align-items: center;
 	}
-	.logo {
-		box-sizing: content-box;
-		aspect-ratio: 1;
-		height: 24px;
-		padding: 5px;
-	}
-
 	#category-card {
 		aspect-ratio: 1;
 		max-width: 400px;
