@@ -13,9 +13,13 @@ categories:
 published: true
 ---
 
+<script>
+	import image01 from '$lib/posts/livechat-typing-test-clone/LiveChat typing test.png';
+</script>
+
 This project is a clone of the typing speed test by LiveChat. You can check out the original application here: [LiveChat Typing Test](https://www.livechat.com/typing-speed-test/#/)
 
-![LiveChat Typing Test screenshot](/src/lib/posts/livechat-typing-test-clone/LiveChat%20typing%20test.png)
+<img alt="LiveChat Typing Test screenshot" src={image01} />
 *Screenshot of Typing Speed Test by LiveChat*
 
 <!-- Here are explanations on some parts of this project.
