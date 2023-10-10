@@ -29,10 +29,5 @@ I used __PicoCSS__ as the base style and customized the application using __vani
 ## Countdown Timer
 I used the __setInterval__ method with an interval of 1000 milliseconds (1 second). There is a variable called __'seconds'__ with a value of __60 that decrements by 1 in each interval__. If the player starts typing, the interval will begin. When 'seconds' reaches a value of __0, the interval will be terminated__ using the __clearInterval__ method.
 
-
-<!-- Here are explanations on some parts of this project.
-## Typing Field:
-
-Using 3 variables, I separate typed words, current word to be typed, and untyped words.
-Each words is put inside a span element. 
-It consist of span elements for each words. One span element will serve as the input text field by using contenteditable attributes.  -->
+## Input Field
+I used a span element and set it's contentEditable attributes to true. Why I did not use input element? That is because input element's width is not dynamic... To be honest I don't know how to explain this part. I will try to write more when I have time to think. 
