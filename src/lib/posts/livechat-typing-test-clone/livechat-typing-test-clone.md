@@ -30,4 +30,12 @@ I used __PicoCSS__ as the base style and customized the application using __vani
 I used the __setInterval__ method with an interval of 1000 milliseconds (1 second). There is a variable called __'seconds'__ with a value of __60 that decrements by 1 in each interval__. If the player starts typing, the interval will begin. When 'seconds' reaches a value of __0, the interval will be terminated__ using the __clearInterval__ method.
 
 ## Input Field
-I used a span element and set it's contentEditable attributes to true. Why I did not use input element? That is because input element's width is not dynamic... To be honest I don't know how to explain this part. I will try to write more when I have time to think. 
+
+I used a `<span>` element and set its contentEditable attribute to true. Why didn't I use an `<input>` element? That's because the `<input>` element's width is not dynamic and cannot change during runtime. Its width can only be altered using JavaScript, which would add extra work. I believe that using the `<span>` element is the best choice here because its width will shrink based on the width of its content.
+
+I used 3 types of event handler on the `<span>` element:
+1. ClipboardEventHandler, on:paste
+2. KeyboardEventHandler, on:keydown
+3. FormEventHandler, on:input
+
+I will explain each of the event handler I used later when I have the time. Bye for now.

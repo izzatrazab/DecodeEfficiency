@@ -153,7 +153,6 @@
 			seconds
 		</div>
 	</div>
-<!-- sdfsdfs -->
 	<div
 		id="typing"
 		on:keydown
