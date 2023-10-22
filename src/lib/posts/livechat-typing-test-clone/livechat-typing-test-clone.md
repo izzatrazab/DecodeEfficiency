@@ -31,7 +31,7 @@ I used the __setInterval__ method with an interval of 1000 milliseconds (1 secon
 
 ## Input Field
 
-I used a `<span>` element and set its contentEditable attribute to true. Why didn't I use an `<input>` element? That's because the `<input>` element's width is not dynamic and cannot change during runtime. Its width can only be altered using JavaScript, which would add extra work. I believe that using the `<span>` element is the best choice here because its width will shrink based on the width of its content.
+I used a `<span>` with 'editable content' instead of an `<input>` because the `<input>` has a fixed width that can only be changed with JavaScript, making things more complicated. Using a `<span>` is a better choice because it adjusts its width as the content changes (when typing), allowing the text to move smoothly from right to left.
 
 I used 3 types of event handler on the `<span>` element:
 1. ClipboardEventHandler, on:paste
