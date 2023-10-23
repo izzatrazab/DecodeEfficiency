@@ -27,10 +27,13 @@
 		</header>
 		<div>
 			{#each categories as category}
-				<a href="/category/{category}" style="display: contents;">
-					<button class="outline" on:click={() => (dialog = false)}>
-						{category}
-					</button>
+				<a
+					href="/category/{category}"
+					role="button"
+					class="outline"
+					on:click={() => (dialog = false)}
+				>
+					{category}
 				</a>
 			{/each}
 		</div>
