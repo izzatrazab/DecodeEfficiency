@@ -24,10 +24,13 @@ This project is a clone of the typing speed test by LiveChat. You can check out 
 __*Screenshot of Typing Speed Test by LiveChat*__
 
 ## Interface Design
-I used __PicoCSS__ as the base style and customized the application using __vanilla CSS__. There are some slight differences here and there in the height and width of elements, but the appearance still remains similar to the originals.
+- __PicoCSS__ and some customized CSS
 
 ## Countdown Timer
-I used the __setInterval__ method with an interval of 1000 milliseconds (1 second). There is a variable called __'seconds'__ with a value of __60 that decrements by 1 in each interval__. If the player starts typing, the interval will begin. When 'seconds' reaches a value of __0, the interval will be terminated__ using the __clearInterval__ method.
+- __setInterval__ method with an interval of 1000 milliseconds (1 second)
+- starts when a player starts typing
+- in each interval, a variable with initial value of 60 will decrements by 1
+- at value of 0 the interval will be terminated
 
 ## Input Field
 
