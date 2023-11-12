@@ -34,7 +34,7 @@ __*Screenshot of Typing Speed Test by LiveChat*__
 
 ## Input Field
 
-I used a `<span>` with 'editable content' instead of an `<input>` because the `<input>` has a fixed width that can only be changed with JavaScript, making things more complicated. Using a `<span>` is a better choice because it adjusts its width as the content changes (when typing), allowing the text to move smoothly from right to left.
+- `<span>` element with contenteditable attribute. It is a good choice because it adjusts its width as the content changes (during typing). Typed words on the left of the input field the will transition smoothly from right to left.
 
 I used 3 types of event handler on the `<span>` element:
 1. ClipboardEventHandler, on:paste
