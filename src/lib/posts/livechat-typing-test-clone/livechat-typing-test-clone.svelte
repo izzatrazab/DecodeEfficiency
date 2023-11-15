@@ -89,6 +89,7 @@
 			return
 		}
 	}
+	
 	function onInput(e: any) {
 		if (e.data === ' ' && input !== ' ') {
 			input = input.trimEnd()

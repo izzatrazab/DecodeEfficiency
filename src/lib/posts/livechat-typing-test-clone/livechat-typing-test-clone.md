@@ -37,9 +37,15 @@ __*Screenshot of Typing Speed Test by LiveChat*__
 - `<span>` element with contenteditable attribute. It is a good choice because it adjusts its width as the content changes (during typing). Typed words on the left of the input field the will transition smoothly from right to left.
 
 I used 3 types of event handler on the `<span>` element:
+
 1. ClipboardEventHandler, `on:paste`
 	- block text pasting event 
-2. KeyboardEventHandler, on:keydown
+	
+2. KeyboardEventHandler, `on:keydown`:
+	- detect player starts typing
+	- prevent some default event such as hitting <kbd>Enter</kbd> key or hitting <kbd>spacebar</kbd> when input is empty
+	- count total key pressed
+
 3. FormEventHandler, on:input
 
 I will explain no. 2, and 3 when I have the time. Bye for now.
