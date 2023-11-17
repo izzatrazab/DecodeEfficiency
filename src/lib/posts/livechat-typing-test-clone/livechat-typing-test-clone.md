@@ -46,6 +46,7 @@ I used 3 types of event handler on the `<span>` element:
 	- prevent some default event such as hitting <kbd>Enter</kbd> key or hitting <kbd>spacebar</kbd> when input is empty
 	- count total key pressed
 
-3. FormEventHandler, on:input
-
-I will explain no. 2, and 3 when I have the time. Bye for now.
+3. FormEventHandler, `on:input`:
+	- detect player register a word
+	- check the registered word for correctness
+	- count total correct key pressed
