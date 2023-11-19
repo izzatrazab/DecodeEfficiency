@@ -17,18 +17,18 @@ published: true
 	import image01 from '$lib/posts/livechat-typing-test-clone/LiveChat typing test.png';
 </script>
 
-This project is a clone of the typing speed test by LiveChat. You can check out the original application here: [LiveChat Typing Test](https://www.livechat.com/typing-speed-test/#/)
+This project is a clone of the typing speed test by LiveChat. You can check out the original application here: __[LiveChat Typing Test](https://www.livechat.com/typing-speed-test/#/)__
 
 <img alt="LiveChat Typing Test screenshot" src={image01} />
 
 __*Screenshot of Typing Speed Test by LiveChat*__
 
 ## Interface Design
-- __PicoCSS__ and some customized CSS
+- __[PicoCSS](https://picocss.com/)__ and some customized CSS
 
 ## Countdown Timer
-- __setInterval__ method with an interval of 1000 milliseconds (1 second)
-- starts when a player starts typing
+- __setInterval__ function with an interval of 1000 milliseconds (1 second)
+- starts when a player starts typing (detected using keyboardEventHandler)
 - in each interval, a variable with initial value of 60 will decrements by 1
 - at value of 0 the interval will be terminated
 
