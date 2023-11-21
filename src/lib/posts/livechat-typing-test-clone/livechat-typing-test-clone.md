@@ -15,6 +15,7 @@ published: true
 
 <script>
 	import image01 from '$lib/posts/livechat-typing-test-clone/LiveChat typing test.png';
+	import gif01 from '$lib/posts/livechat-typing-test-clone/word transition right to left.gif';
 </script>
 
 This project is a clone of the typing speed test by LiveChat. You can check out the original application here: __[LiveChat Typing Test](https://www.livechat.com/typing-speed-test/#/)__
@@ -34,7 +35,8 @@ __*Screenshot of Typing Speed Test by LiveChat*__
 
 ## Input Field
 
-- `<span>` element with contenteditable attribute. It is a good choice because it adjusts its width as the content changes (during typing). Typed words on the left of the input field the will transition smoothly from right to left.
+- The `<span>` element with the `contenteditable` attribute is a good choice because it adjusts its width as the content changes (during typing). Typed words on the left of the input field will transition smoothly from right to left.
+<img alt="word transition from right to left" src={gif01} width='50%'/>
 
 I used 3 types of event handler on the `<span>` element:
 
