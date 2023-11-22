@@ -36,7 +36,7 @@ __*Screenshot of Typing Speed Test by LiveChat*__
 ## Input Field
 
 - The `<span>` element with the `contenteditable` attribute is a good choice because it adjusts its width as the content changes (during typing). Typed words on the left of the input field will transition smoothly from right to left.
-<img alt="word transition from right to left" src={gif01} width='50%'/>
+<img alt="word transition from right to left" src={gif01}/>
 
 I used 3 types of event handler on the `<span>` element:
 
