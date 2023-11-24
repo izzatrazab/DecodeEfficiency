@@ -1,10 +1,10 @@
 ---
-title: 'LiveChat Typing Test clone'
+title: 'Typing Test'
 meta:
 - {name: description, content: 'Typing Test'}
 - {name: keywords, content: 'typing test, learn by cloning app, countdown, randomWords pakcage'}
-description: 'LiveChat Typing Test app.'
-date: '2024-08-03'
+description: 'Inspired by LiveChat typing test.'
+date: '2023-11-24'
 categories:
 - sveltekit
 - svelte
@@ -14,15 +14,17 @@ published: true
 ---
 
 <script>
-	import image01 from '$lib/posts/livechat-typing-test-clone/LiveChat typing test.png';
-	import gif01 from '$lib/posts/livechat-typing-test-clone/word transition right to left.gif';
+	import image01 from '$lib/posts/typing-test/LiveChat typing test.png';
+	import gif01 from '$lib/posts/typing-test/word transition right to left.gif';
 </script>
 
-This project is a clone of the typing speed test by LiveChat. You can check out the original application here: __[LiveChat Typing Test](https://www.livechat.com/typing-speed-test/#/)__
+This project is inspired by a __[typing speed test by LiveChat](https://www.livechat.com/typing-speed-test/#/)__.
 
+ <figure>
 <img alt="LiveChat Typing Test screenshot" src={image01} />
+  <figcaption>Screenshot of Typing Speed Test by LiveChat</figcaption>
+</figure> 
 
-__*Screenshot of Typing Speed Test by LiveChat*__
 
 ## Interface Design
 - __[PicoCSS](https://picocss.com/)__ and some customized CSS

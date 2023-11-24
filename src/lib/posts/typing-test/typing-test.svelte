@@ -129,6 +129,8 @@
 			totalCorrectKeyPressed++
 			currentDisplay = currentWord.replace(input, '')
 		}
+
+		
 	}
 </script>
 
