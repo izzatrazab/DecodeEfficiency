@@ -1,6 +1,6 @@
-<script lang="ts">
-	export let title: string
-	export let datePublished: string
+<script>
+	export let title
+	export let datePublished
 </script>
 
 <hgroup>

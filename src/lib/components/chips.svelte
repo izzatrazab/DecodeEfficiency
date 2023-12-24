@@ -1,6 +1,6 @@
-<script lang="ts">
+<script>
 	import Chip from './chip.svelte'
-	export let arr: string[] = []
+	export let arr  = []
 </script>
 
 <div>

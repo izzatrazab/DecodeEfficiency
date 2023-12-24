@@ -1,18 +1,17 @@
-import type { Post } from "$lib/types";
 import { json } from "@sveltejs/kit"
 import { list } from '$lib/posts/posts'
 const postsNameList = list
 
 async function getPosts() {
-    let posts: Post[] = []
+    let posts = []
     try {
         for await (const dir of postsNameList) {
             const file = await import(`../../../lib/posts/${dir}/${dir}.md`)
             if (file && typeof file === 'object' && 'metadata' in file) {
-                const metadata = file.metadata as Omit<Post, 'slug'>
+                const metadata = file.metadata
 
                 if (!metadata.published) continue
-                const post = { ...metadata, slug: dir } satisfies Post
+                const post = { ...metadata, slug: dir }
                 posts.push(post)
             }
         }

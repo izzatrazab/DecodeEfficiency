@@ -1,7 +1,7 @@
-<script lang="ts">
-	export let title: string = ''
-	export let description: string = ''
-	export let slug: string = ''
+<script>
+	export let title = ''
+	export let description = ''
+	export let slug = ''
 </script>
 
 <a href="/{slug}">

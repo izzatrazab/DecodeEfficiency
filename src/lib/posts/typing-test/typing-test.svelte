@@ -1,135 +1,161 @@
-<script lang="ts">
-	import randomWords from 'random-words'
-	import { onMount } from 'svelte'
+<script>
+	// @ts-check
 
-	const durationSeconds: number = 60
-	let seconds: number = durationSeconds
-	let start: boolean = false
+	import randomWords from 'random-words';
+	import { onMount } from 'svelte';
 
-	let words: string[] = []
-	let typedWords: { typed: string; class: string }[] = []
-	let input: string = ''
-	let currentWord: string = ''
-	let currentDisplay: string = ''
+	/** @type {number} : Duration of the typing test.*/
+	const DURATIONS = 60;
 
-	let wordCount: number = 0
-	let trueCharacterCount: number = 0
-	let characterCount: number = 0
+	/** @type {number} */
+	let sec = DURATIONS;
 
-	let totalKeyPressed: number = 0
-	let totalCorrectKeyPressed: number = 0
-	let accuracy: number = 0
+	/** @type {boolean} : Flag to indicate whether the test is started or not.*/
+	let start = false;
 
-	let scoreDialog: boolean = false
-	let editableSpanElement: HTMLSpanElement
+	/** @type {string[]}*/
+	let words = [];
+
+	/** @type {{ typed: string; class: string }[]}*/
+	let typed_words = [];
+
+	/** @type {string} : bind to the user input*/
+	let input = '';
+
+	/** @type {boolean} : correctness of input varible*/
+	let correct = false;
+
+	let currentWord = '';
+	let currentDisplay = '';
+
+	let wordCount = 0;
+	let trueCharacterCount = 0;
+	let characterCount = 0;
+
+	let totalKeyPressed = 0;
+	let totalCorrectKeyPressed = 0;
+	// let accuracy = 0;
+
+	/**
+	 * @type {boolean} : score dialog flag. used when to open/close the score dialog
+	 */
+	let scoreDialog = false;
+
+	let editableSpanElement;
 
 	onMount(() => {
-		editableSpanElement = document.getElementById('editable') as HTMLSpanElement
-		words = randomWords(10)
-		currentWord = words[0]
-		currentDisplay = words[0]
-		editableSpanElement.focus()
-	})
+		editableSpanElement = document.getElementById('editable');
+		words = randomWords(200);
+		currentWord = words[0];
+		currentDisplay = words[0];
+		editableSpanElement.focus();
+	});
 
 	function countDown() {
-		start = true
+		start = true;
 		let timer = setInterval(() => {
-			seconds--
-			if (seconds === 0) {
-				clearInterval(timer)
-				editableSpanElement.setAttribute('contenteditable', 'false')
-				window.addEventListener('keydown', preventSpacebarScrolling)
-				scoreDialog = true
-				cleanup()
+			sec--;
+			if (sec === 0) {
+				clearInterval(timer);
+				editableSpanElement.setAttribute('contenteditable', 'false');
+				window.addEventListener('keydown', preventSpacebarScrolling);
+				scoreDialog = true;
+				cleanup();
 			}
-		}, 1000)
+		}, 1000);
 	}
 
 	function cleanup() {
-		input = ''
-		typedWords = []
-		words = randomWords(10)
-		currentWord = words[0]
-		currentDisplay = words[0]
-		start = false
-		seconds = durationSeconds
+		input = '';
+		typed_words = [];
+		words = randomWords(200);
+		currentWord = words[0];
+		currentDisplay = words[0];
+		start = false;
+		sec = DURATIONS;
 	}
 
 	function restart() {
-		window.removeEventListener('keydown', preventSpacebarScrolling)
-		totalKeyPressed = 0
-		totalCorrectKeyPressed = 0
-		accuracy = 0
-		wordCount = 0
-		trueCharacterCount = 0
-		characterCount = 0
-		editableSpanElement.setAttribute('contenteditable', 'true')
-		editableSpanElement.focus()
-		scoreDialog = false
+		window.removeEventListener('keydown', preventSpacebarScrolling);
+		totalKeyPressed = 0;
+		totalCorrectKeyPressed = 0;
+		// accuracy = 0;
+		wordCount = 0;
+		trueCharacterCount = 0;
+		characterCount = 0;
+		editableSpanElement.setAttribute('contenteditable', 'true');
+		editableSpanElement.focus();
+		scoreDialog = false;
 	}
 
-	function preventSpacebarScrolling(e: any) {
+	function preventSpacebarScrolling(e) {
 		if (e.keyCode == 32 && e.target == document.body) {
-			e.preventDefault()
+			e.preventDefault();
 		}
 	}
 
-	function onKeydown(e: any) {
-		if (!start) countDown()
-		if (
-			e.key === 'Enter' ||
-			((e.key === ' ' || e.keyCode === 32 || e.which === 32) && input === '') ||
-			(e.key === 'Backspace' && input === '')
-		) {
-			e.preventDefault()
-			return
+	function detectStart(e) {
+		if (input.length === 1 && e.data !== null) {
+			countDown();
+			onInput(e);
 		}
-		if (e.key !== 'Backspace') {
-			totalKeyPressed++
-			return
-		}
+
+		if (e.data == ' ') check();
 	}
-	
-	function onInput(e: any) {
-		if (e.data === ' ' && input !== ' ') {
-			input = input.trimEnd()
-			e.preventDefault()
-			let temp = 'typo'
-			if (currentWord == input) {
-				temp = 'correct'
-				wordCount++
-				characterCount += currentWord.length
-				trueCharacterCount += currentWord.length
-			} else {
-				let temp = 0
-				for (let index = 0; index < currentWord.length; index++) {
-					if (currentWord[index] !== input[index])
-					break
-					temp++
-				}
-				trueCharacterCount += temp
+
+	function check() {
+		input = input.trimEnd();
+		let temp = 'typo';
+		if (currentWord == input) {
+			temp = 'correct';
+			wordCount++;
+			characterCount += currentWord.length;
+			trueCharacterCount += currentWord.length;
+		} else {
+			let temp = 0;
+			for (let index = 0; index < currentWord.length; index++) {
+				if (currentWord[index] !== input[index]) break;
+				temp++;
 			}
-			let word = {
-				typed: input,
-				class: temp
-			}
-			typedWords = [...typedWords, word]
-			input = ''
-			words = words.slice(1)
-			currentWord = words[0]
-			currentDisplay = words[0]
-			if (words.length <= 15) {
-				words = [...words, ...randomWords(10)]
-			}
-			accuracy = Math.trunc((totalCorrectKeyPressed / totalKeyPressed) * 100)
-			return
+			trueCharacterCount += temp;
 		}
-		// need to check
+		let word = {
+			typed: input,
+			class: temp
+		};
+		typed_words = [...typed_words, word];
+		input = '';
+		words = words.slice(1);
+		currentWord = words[0];
+		currentDisplay = words[0];
+		console.log(totalCorrectKeyPressed + ' : ' + totalKeyPressed);
+		// accuracy = Math.trunc((totalCorrectKeyPressed / totalKeyPressed) * 100);
+	}
+
+	function onInput(e) {
+		if (e.inputType === 'insertParagraph') e.preventDefault();
+		totalKeyPressed++;
+
+		
+		if (e.data === ' ') check();
+
 		if (currentWord.startsWith(input)) {
-			totalCorrectKeyPressed++
-			currentDisplay = currentWord.replace(input, '')
+			if (
+				e.inputType == 'deleteContentBackward' ||
+				e.inputType == 'deleteContentForward' ||
+				e.inputType == 'deleteByCut'
+			) {
+				if (!correct) {
+					totalCorrectKeyPressed++;
+				}
+			} else {
+				totalCorrectKeyPressed++;
+			}
+			correct = true;
+			currentDisplay = currentWord.replace(input, '');
+		} else {
+			correct = false;
 		}
-
 		
 	}
 </script>
@@ -146,25 +172,25 @@
 				<div>{wordCount}</div>
 				words/min
 			</div>
-			<div>
+			<!-- <div>
 				<div>{accuracy}</div>
 				% accuracy
-			</div>
+			</div> -->
 		</div>
 		<div id="count-down">
-			<span>{seconds}</span>
+			<span>{sec}</span>
 			seconds
 		</div>
 	</div>
+	<!-- {totalCorrectKeyPressed}/{totalKeyPressed} -->
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div
 		id="typing"
 		on:keydown
-		on:click={() => {
-			editableSpanElement.focus()
-		}}
+		on:click={editableSpanElement.focus()}
 	>
 		<div id="typed">
-			{#each typedWords as p}
+			{#each typed_words as p}
 				<span class={p.class}>{p.typed}</span>
 			{/each}
 			<span
@@ -173,14 +199,18 @@
 				spellcheck="false"
 				autocapitalize="none"
 				autocorrect="off"
-				class={currentWord.startsWith(input) ? 'correct' : 'typo'}
+				class={correct ? 'correct' : 'typo'}
 				bind:innerText={input}
 				on:paste={(e) => e.preventDefault()}
-				on:keydown={(e) => onKeydown(e)}
-				on:input={(e) => onInput(e)}
+				on:input={start ? (e) => onInput(e) : detectStart}
+				on:keydown={(e) => {
+					if (e.key === 'Enter') {
+						e.preventDefault();
+					}
+				}}
 			/>
-			<br />
 		</div>
+
 		<div id="new-sentence">
 			{#each words as pword, i}
 				{#if i == 0}
@@ -197,10 +227,11 @@
 				Awesome! You type with the speed of
 				<strong>{characterCount / 5}WPM ({trueCharacterCount}CPM)</strong>.
 				<br />
-				Your accuracy was <strong>{accuracy}%</strong>. Congratulations!
+				<!-- Your accuracy was <strong>{accuracy}%</strong>. -->
+				Congratulations!
 			</p>
 			<br />
-			<input type="button" value="Try Again" on:click={() => restart()} />
+			<input type="button" value="Try Again" on:click={restart} />
 		</article>
 	</dialog>
 </section>
@@ -208,8 +239,18 @@
 <style>
 	section {
 		text-align: center;
-		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-			Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		font-family:
+			system-ui,
+			-apple-system,
+			BlinkMacSystemFont,
+			'Segoe UI',
+			Roboto,
+			Oxygen,
+			Ubuntu,
+			Cantarell,
+			'Open Sans',
+			'Helvetica Neue',
+			sans-serif;
 	}
 
 	#scoreboard {
@@ -269,6 +310,10 @@
 
 	#typed > span {
 		padding-left: 8px;
+	}
+
+	#new-sentence {
+		text-align: left;
 	}
 
 	#new-sentence > span {

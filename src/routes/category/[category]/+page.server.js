@@ -1,22 +1,21 @@
-import type { Categories, Post } from '$lib/types'
-import { categories } from '$lib/types'
 import { error } from '@sveltejs/kit'
 import {list } from '$lib/posts/posts'
 const directories = list
+const categories = ['clone','sveltekit' , 'svelte' , 'css']
 
-async function getPostsbyCategory(category: string) {
-    let posts: Post[] = []
+async function getPostsbyCategory(category) {
+    let posts = []
 
     for await (const dir of directories) {
         const file = await import(`../../../lib/posts/${dir}/${dir}.md`)
 
         if (file && typeof file === 'object' && 'metadata' in file) {
-            const metadata = file.metadata as Omit<Post, 'slug'>
+            const metadata = file.metadata
 
             if (!metadata.published) continue
-            if (!metadata.categories.includes(category as Categories)) continue
+            if (!metadata.categories.includes(category)) continue
 
-            const post = { ...metadata, slug: dir } satisfies Post
+            const post = { ...metadata, slug: dir }
             posts.push(post)
         }
     }
@@ -30,10 +29,10 @@ async function getPostsbyCategory(category: string) {
 
 export async function load({ params }) {
     try {
-        if (!categories.includes(params.category as Categories))
+        if (!categories.includes(params.category))
             throw new Error("Category not Available");
 
-        const posts: Post[] = await getPostsbyCategory(params.category)
+        const posts = await getPostsbyCategory(params.category)
         return { posts }
     } catch (e) {
         console.log(e);
