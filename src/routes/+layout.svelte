@@ -1,7 +1,8 @@
-<script lang="ts">
-	import Github from '$lib/logo/github.svelte'
-	import { categories } from '$lib/types'
-	let dialog: boolean = false
+<script>
+	import Github from '$lib/logo/github.svelte';
+	import { categories } from '$lib/types';
+	import '@picocss/pico/css/pico.indigo.css';
+	let dialog = false;
 </script>
 
 <header>
@@ -30,7 +31,6 @@
 				<a
 					href="/category/{category}"
 					role="button"
-					class="outline"
 					on:click={() => (dialog = false)}
 				>
 					{category}
@@ -43,7 +43,7 @@
 <footer>
 	<div class="container" id="footer">
 		<small>
-			This website is built using
+			Built using
 			<a
 				href="https://svelte.dev"
 				target="_blank"
@@ -52,11 +52,6 @@
 			>
 				Sveltekit
 			</a>.
-			<br />
-			Feel free to email me for any inquiries at
-			<b>
-				<a href="mailto: izzatrazab@gmail.com">izzatrazab@gmail.com</a>.
-			</b>
 		</small>
 		<div>
 			<Github size={40} />

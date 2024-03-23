@@ -160,7 +160,7 @@
 	}
 </script>
 
-<section>
+<section class="container">
 	<p>Test your typing skills</p>
 	<div id="scoreboard">
 		<div id="readings">
@@ -344,11 +344,11 @@
 	}
 
 	.correct {
-		color: var(--primary);
+		color: var(--pico-primary);
 	}
 
 	article > p > strong {
 		font-size: x-large;
-		color: var(--primary);
+		color: var(--pico-primary);
 	}
 </style>

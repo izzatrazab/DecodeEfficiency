@@ -1,7 +1,7 @@
-<script lang="ts">
+<script>
 	import Title from '$lib/components/title.svelte'
-	import type { Post } from '$lib/types'
-	export let data:{app:any,md:any,metadata:Post}
+	// import type { Post } from '$lib/types'
+	export let data
 </script>
 
 <svelte:head>
@@ -14,7 +14,7 @@
 <Title title={data.metadata.title} datePublished={data.metadata.date} />
 
 <svelte:component this={data.app} />
-<section>
+<section class="container">
 	<svelte:component this={data.md}/>
 </section>
 

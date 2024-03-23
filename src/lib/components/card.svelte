@@ -5,17 +5,20 @@
 </script>
 
 <a href="/{slug}">
-	<div class='card'>
+	<article class='card'>
+		<div id="thumbnail" >
+			<slot name="thumbnail"/>
+		</div>
 		<hgroup>
-			<h3>
+			<h5>
 				{title}
-			</h3>
+			</h5>
 			<p>
 				{description}
 			</p>
 		</hgroup>
-		<slot/>
-	</div>
+		<slot name='chip'/>
+	</article>
 </a>
 
 <style>
@@ -23,10 +26,11 @@
 		text-decoration: none;
 		color: white;
 	}
-	div {
-		aspect-ratio: 0.8;
+	article {
+		aspect-ratio: 1;
 		transition: all .2s !important;
 		width: 280px;
+		margin: 0;
 	}
 
 	hgroup > h3{
@@ -35,11 +39,17 @@
 	hgroup > p{
 		height: 3em;
 	}
-	a:focus div,
-	div:hover{
+	a:focus article,
+	article:hover{
 		text-decoration: none;
 		transform: scale(1.04);
 		border-style: solid;
-		border-color: var(--dropdown-border);
+		/* border-color: var(--pico-dropdown-border); */
+	}
+
+	#thumbnail{
+		aspect-ratio: 16/9;
+		margin: -1rem -1rem 1rem -1rem;
+		border-radius: inherit;
 	}
 </style>
