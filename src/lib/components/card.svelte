@@ -33,7 +33,7 @@
 		margin: 0;
 	}
 
-	hgroup > h3{
+	hgroup > h5{
 		overflow: hidden;
 	}
 	hgroup > p{

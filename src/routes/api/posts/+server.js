@@ -7,11 +7,14 @@ async function getPosts() {
     try {
         for await (const dir of postsNameList) {
             const file = await import(`../../../lib/posts/${dir}/${dir}.md`)
+            const thumbnail = `/posts/thumbnails/${dir}-thumbnail.png`
+
             if (file && typeof file === 'object' && 'metadata' in file) {
                 const metadata = file.metadata
 
                 if (!metadata.published) continue
-                const post = { ...metadata, slug: dir }
+                const post = { ...metadata, slug: dir, thumbnail: thumbnail}
+
                 posts.push(post)
             }
         }
