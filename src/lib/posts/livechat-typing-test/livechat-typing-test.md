@@ -1,5 +1,5 @@
 ---
-title: 'Typing Test'
+title: 'LiveChat Typing Test'
 meta:
 - {name: description, content: 'Typing Test'}
 - {name: keywords, content: 'typing test, learn by cloning app, countdown, randomWords pakcage'}
@@ -14,8 +14,8 @@ published: true
 ---
 
 <script>
-	import image01 from '$lib/posts/typing-test/LiveChat typing test.png';
-	import gif01 from '$lib/posts/typing-test/word transition right to left.gif';
+	import image01 from '$lib/posts/livechat-typing-test/LiveChat typing test.png';
+	import gif01 from '$lib/posts/livechat-typing-test/word transition right to left.gif';
 </script>
 
 This project is inspired by a __[typing speed test by LiveChat](https://www.livechat.com/typing-speed-test/#/)__.
@@ -38,7 +38,7 @@ This project is inspired by a __[typing speed test by LiveChat](https://www.live
 ## Input Field
 
 - The `<span>` element with the `contenteditable` attribute is a good choice because it adjusts its width as the content changes (during typing). Typed words on the left of the input field will transition smoothly from right to left.
-<img alt="word transition from right to left" src={gif01}/>
+- <img alt="word transition from right to left" src={gif01}/>
 
 I used 3 types of event handler on the `<span>` element:
 

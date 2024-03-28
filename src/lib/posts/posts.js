@@ -1,3 +1,4 @@
 export const list = [
-    'typing-test'
+    'livechat-typing-test',
+    '10fastfingers-typing-test'
 ]
