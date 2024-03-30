@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import {categories} from '$lib/types'
 </script>
 

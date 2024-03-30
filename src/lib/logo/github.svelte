@@ -1,5 +1,5 @@
 <script>
-	export let size = 30
+	export let size = 30;
 </script>
 
 <a href="https://github.com/izzatrazab" target="_blank">
@@ -20,12 +20,7 @@
 </a>
 
 <style>
-	a 
-	
-	{
-		
-		
-		
+	a {
 		color: var(--h1-color);
 	}
 </style>

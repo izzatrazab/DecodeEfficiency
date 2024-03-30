@@ -8,6 +8,7 @@ async function getPostsbyCategory(category) {
 
     for await (const dir of directories) {
         const file = await import(`../../../lib/posts/${dir}/${dir}.md`)
+        let thumbnail = `/posts/thumbnails/${dir}-thumbnail.png`;
 
         if (file && typeof file === 'object' && 'metadata' in file) {
             const metadata = file.metadata
@@ -15,7 +16,7 @@ async function getPostsbyCategory(category) {
             if (!metadata.published) continue
             if (!metadata.categories.includes(category)) continue
 
-            const post = { ...metadata, slug: dir }
+            const post = { ...metadata, slug: dir, thumbnail: thumbnail }
             posts.push(post)
         }
     }

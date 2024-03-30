@@ -128,7 +128,7 @@
 		words = words.slice(1);
 		currentWord = words[0];
 		currentDisplay = words[0];
-		console.log(totalCorrectKeyPressed + ' : ' + totalKeyPressed);
+		// console.log(totalCorrectKeyPressed + ' : ' + totalKeyPressed);
 		// accuracy = Math.trunc((totalCorrectKeyPressed / totalKeyPressed) * 100);
 	}
 
@@ -136,10 +136,11 @@
 		if (e.inputType === 'insertParagraph') e.preventDefault();
 		totalKeyPressed++;
 
-		
 		if (e.data === ' ') check();
 
-		if (currentWord.startsWith(input)) {
+		// charCodeAt(0) == 10 is line feed unicode '\n'
+		// somehow when hit backspace (if input already has a character), input variable a line feed unicode. I don't know why its not a normal empty
+		if (currentWord.startsWith(input) || input.charCodeAt(0) == 10) {
 			if (
 				e.inputType == 'deleteContentBackward' ||
 				e.inputType == 'deleteContentForward' ||
@@ -153,10 +154,9 @@
 			}
 			correct = true;
 			currentDisplay = currentWord.replace(input, '');
-		} else {
-			correct = false;
+			return;
 		}
-		
+		correct = false;
 	}
 </script>
 
@@ -184,11 +184,7 @@
 	</div>
 	<!-- {totalCorrectKeyPressed}/{totalKeyPressed} -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div
-		id="typing"
-		on:keydown
-		on:click={editableSpanElement.focus()}
-	>
+	<div id="typing" on:keydown on:click={editableSpanElement.focus()}>
 		<div id="typed">
 			{#each typed_words as p}
 				<span class={p.class}>{p.typed}</span>

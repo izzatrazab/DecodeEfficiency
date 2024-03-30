@@ -2,7 +2,6 @@
 	import Card from '$lib/components/card.svelte'
 	import Chips from '$lib/components/chips.svelte'
 	import {page} from '$app/stores'
-	import img from '$lib/posts/typing-test/LiveChat typing test.png'
 	export let data
 	
 </script>
@@ -17,7 +16,7 @@
 			slug={datum.slug}
 			--card-background="red"
 		> 
-			<img slot="thumbnail" src="{img}" alt="" style="border-radius: inherit;"> 
+			<img slot="thumbnail" src="{datum.thumbnail}" alt="" style="border-radius: inherit;"> 
 			<Chips arr={datum.categories} slot='chip'/>
 		</Card>
 	{/each}
