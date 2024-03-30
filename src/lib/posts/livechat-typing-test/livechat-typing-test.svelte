@@ -128,7 +128,6 @@
 		words = words.slice(1);
 		currentWord = words[0];
 		currentDisplay = words[0];
-		// console.log(totalCorrectKeyPressed + ' : ' + totalKeyPressed);
 		// accuracy = Math.trunc((totalCorrectKeyPressed / totalKeyPressed) * 100);
 	}
 
