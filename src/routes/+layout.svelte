@@ -1,7 +1,7 @@
 <script>
 	import Github from '$lib/logo/github.svelte';
 	import { categories } from '$lib/types';
-	import '@picocss/pico/css/pico.jade.css';
+	import '@picocss/pico/css/pico.lime.min.css';
 	let dialog = false;
 </script>
 

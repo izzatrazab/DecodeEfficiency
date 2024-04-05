@@ -20,7 +20,7 @@ async function getPosts() {
 			const file = await import(`../../../lib/posts/${dir}/${dir}.md`);
 			let thumbnail = `/posts/thumbnails/${dir}-thumbnail.png`;
 
-            if(!fileExists(thumbnail)){
+            if(dev && !fileExists(thumbnail)){
                 thumbnail = `/posts/thumbnails/no-image.png`
             }
 
