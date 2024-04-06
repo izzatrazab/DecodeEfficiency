@@ -1,7 +1,11 @@
 <script>
 	import Github from '$lib/logo/github.svelte';
 	import { categories } from '$lib/types';
+	// import '@picocss/pico/css/pico.jade.min.css';
 	import '@picocss/pico/css/pico.lime.min.css';
+	// import '@picocss/pico/css/pico.min.css';
+	// import '@picocss/pico/css/pico.orange.min.css';
+	// import '@picocss/pico/css/pico.pink.min.css';
 	let dialog = false;
 </script>
 
@@ -12,7 +16,7 @@
 				<a href="/" title="HOME">DECODING EFFICIENCY</a>
 			</li>
 			<li class="filter">
-				<button on:click={() => (dialog = true)}> CATEGORY </button>
+				<button class="secondary" on:click={() => (dialog = true)}> CATEGORY </button>
 			</li>
 		</ol>
 	</nav>
@@ -24,15 +28,11 @@
 	<div class="card" id="category-card">
 		<header>
 			<span><strong>Categories:</strong></span>
-			<button on:click={() => (dialog = false)}> ✕ </button>
+			<button class="secondary" on:click={() => (dialog = false)}> ✕ </button>
 		</header>
 		<div>
 			{#each categories as category}
-				<a
-					href="/category/{category}"
-					role="button"
-					on:click={() => (dialog = false)}
-				>
+				<a href="/category/{category}" role="button" on:click={() => (dialog = false)}>
 					{category}
 				</a>
 			{/each}
@@ -120,18 +120,20 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		margin-bottom: 10px;
 	}
 	#category-card > header > button {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding: 5px;
+		height: 20px;
 		margin: 0;
 		aspect-ratio: 1;
 		border-radius: 50%;
 		border: none;
 		font-weight: bolder;
-		color: white !important;
-		background-color: rgba(128, 128, 128, 0.244);
+		background: none;
 	}
 
 	#category-card > div {
