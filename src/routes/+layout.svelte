@@ -2,9 +2,9 @@
 	import Github from '$lib/logo/github.svelte';
 	import { categories } from '$lib/types';
 	// import '@picocss/pico/css/pico.jade.min.css';
-	import '@picocss/pico/css/pico.lime.min.css';
+	// import '@picocss/pico/css/pico.lime.min.css';
 	// import '@picocss/pico/css/pico.min.css';
-	// import '@picocss/pico/css/pico.orange.min.css';
+	import '@picocss/pico/css/pico.orange.min.css';
 	// import '@picocss/pico/css/pico.pink.min.css';
 	let dialog = false;
 </script>

@@ -1,4 +1,8 @@
 <script>
+	// take note
+	// 1) space and enter can starts the test
+	// 2) space and enter can register non-empty string
+
 	// @ts-check
 
 	import randomWords from 'random-words';
@@ -94,13 +98,9 @@
 		}
 	}
 
-	function detectStart(e) {
-		if (input.length === 1 && e.data !== null) {
-			countDown();
-			onInput(e);
-		}
-
-		if (e.data == ' ') check();
+	function detectStart(e = null) {
+		countDown();
+		if (e != null) onInput(e);
 	}
 
 	function check() {
@@ -131,11 +131,21 @@
 		// accuracy = Math.trunc((totalCorrectKeyPressed / totalKeyPressed) * 100);
 	}
 
-	function onInput(e) {
-		if (e.inputType === 'insertParagraph') e.preventDefault();
+	function onInput(e = null) {
+		console.log(e);
+
+		// if(input.length == 1 && input.charCodeAt(0) == 160){
+
+		// 	return
+		// }
+
+		if (e.inputType === 'insertParagraph') {
+			console.log('in');
+			e.preventDefault();
+		}
 		totalKeyPressed++;
 
-		if (e.data === ' ') check();
+		if (e.data === ' ' || e == null) check();
 
 		// charCodeAt(0) == 10 is line feed unicode '\n'
 		// somehow when hit backspace (if input already has a character), input variable a line feed unicode. I don't know why its not a normal empty
@@ -196,11 +206,15 @@
 				autocorrect="off"
 				class={correct ? 'correct' : 'typo'}
 				bind:innerText={input}
-				on:paste={(e) => e.preventDefault()}
-				on:input={start ? (e) => onInput(e) : detectStart}
+				on:input={start ? (e) => onInput(e) : (e) => detectStart(e)}
 				on:keydown={(e) => {
-					if (e.key === 'Enter') {
+					if (e.code === 'Enter' || e.code == 'Space') {
 						e.preventDefault();
+						if (!start)
+							detectStart();
+						else if (input != '' && input.charCodeAt(0) != 10)
+							check();
+						
 					}
 				}}
 			/>
