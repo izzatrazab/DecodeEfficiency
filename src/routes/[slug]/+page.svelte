@@ -1,7 +1,15 @@
 <script>
 	import Title from '$lib/components/title.svelte';
+	import { setContext } from 'svelte';
 	// import type { Post } from '$lib/types'
 	export let data;
+	let reload = {};
+
+	setContext('reload', { reloadComponent })
+
+	function reloadComponent(){
+		reload = {}
+	}
 </script>
 
 <svelte:head>
@@ -14,7 +22,9 @@
 <Title title={data.metadata.title} datePublished={data.metadata.date} />
 
 <div style="padding-top: 2rem; padding-bottom: 2rem;">
-	<svelte:component this={data.app} />
+	{#key reload}
+		<svelte:component this={data.app} />
+	{/key}
 </div>
 
 <section class="container">
