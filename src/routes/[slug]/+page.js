@@ -2,11 +2,11 @@ import { error } from '@sveltejs/kit'
 
 export async function load({ params }) {
 	try {
-		const app = await import(`../../lib/posts/${params.slug}/${params.slug}.svelte`)
+		const app = await import(`../../lib/posts/${params.slug}/${params.slug}.svelte`) ?? null
 		const post = await import(`../../lib/posts/${params.slug}/${params.slug}.md`)
 		
 		return {
-			app: app.default,
+			app: app?.default,
 			md: post.default,
 			metadata: post.metadata
 		}

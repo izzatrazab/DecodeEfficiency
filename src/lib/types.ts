@@ -1,4 +1,4 @@
-export type Categories = 'clone'|'sveltekit' | 'svelte' | 'css'  
+export type Categories = 'clone' | 'sveltekit' | 'svelte' | 'css' 
 export const categories : Categories[]= ['clone','sveltekit','svelte', 'css']
 export type Post = {
 	title: string
