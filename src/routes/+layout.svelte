@@ -5,8 +5,15 @@
 	// import '@picocss/pico/css/pico.lime.min.css';
 	// import '@picocss/pico/css/pico.min.css';
 	import '@picocss/pico/css/pico.orange.min.css';
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
 	// import '@picocss/pico/css/pico.pink.min.css';
-	let dialog = false;
+	let dialog = $state(false);
 </script>
 
 <header>
@@ -16,23 +23,23 @@
 				<a href="/" title="HOME">DECODING EFFICIENCY</a>
 			</li>
 			<li class="filter">
-				<button class="secondary" on:click={() => (dialog = true)}> CATEGORY </button>
+				<button class="secondary" onclick={() => (dialog = true)}> CATEGORY </button>
 			</li>
 		</ol>
 	</nav>
 </header>
 <main class="container">
-	<slot />
+	{@render children?.()}
 </main>
 <dialog open={dialog}>
 	<div class="card" id="category-card">
 		<header>
 			<span><strong>Categories:</strong></span>
-			<button class="secondary" on:click={() => (dialog = false)}> ✕ </button>
+			<button class="secondary" onclick={() => (dialog = false)}> ✕ </button>
 		</header>
 		<div>
 			{#each categories as category}
-				<a href="/category/{category}" role="button" on:click={() => (dialog = false)}>
+				<a href="/category/{category}" role="button" onclick={() => (dialog = false)}>
 					{category}
 				</a>
 			{/each}

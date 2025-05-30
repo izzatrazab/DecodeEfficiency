@@ -4,11 +4,11 @@
 	import IconReload from '$lib/logo/reload.svelte'
 	import { onMount } from 'svelte';
 
-	let words = []
+	let words = $state([])
 	let curWord = ''
-	let start = false
-	let sec = 60
-	let input = ''
+	let start = $state(false)
+	let sec = $state(60)
+	let input = $state('')
 
 	onMount(()=>{
 		words = randomWords(200)
@@ -52,8 +52,8 @@
 	<div class="input-field">
 		<input type="text" style=" max-width: 400px"
 		bind:value={input}
-		on:keydown={(event) => onKeydown(event)}
-		on:input={ start ? (event) => onInput(event) : detectStart()}
+		onkeydown={(event) => onKeydown(event)}
+		oninput={start ? (event) => onInput(event) : detectStart()}
 		/>
 		<button class="secondary">{sec}</button>
 		<button class="primary">

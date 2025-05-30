@@ -2,7 +2,7 @@
 	import Card from '$lib/components/card.svelte'
 	import Chips from '$lib/components/chips.svelte'
 	import {page} from '$app/stores'
-	export let data
+	let { data } = $props();
 	
 </script>
 
@@ -16,8 +16,12 @@
 			slug={datum.slug}
 			--card-background="red"
 		> 
-			<img slot="thumbnail" src="{datum.thumbnail}" alt="" style="border-radius: inherit;"> 
-			<Chips arr={datum.categories} slot='chip'/>
+			{#snippet thumbnail()}
+						<img  src="{datum.thumbnail}" alt="" style="border-radius: inherit;">
+					{/snippet} 
+			{#snippet chip()}
+						<Chips arr={datum.categories} />
+					{/snippet}
 		</Card>
 	{/each}
 	{#if data.posts.length === 0}

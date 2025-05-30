@@ -1,5 +1,11 @@
 <script>
-	export let size = 30;
+	/**
+	 * @typedef {Object} Props
+	 * @property {number} [size]
+	 */
+
+	/** @type {Props} */
+	let { size = 30 } = $props();
 </script>
 
 <a href="https://github.com/izzatrazab" target="_blank">

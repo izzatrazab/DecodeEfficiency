@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 </script>
 
 <div>
-	<h1>{$page.error?.message}</h1>
+	<h1>{page.error?.message}</h1>
 </div>

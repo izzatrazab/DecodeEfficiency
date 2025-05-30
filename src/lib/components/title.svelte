@@ -1,6 +1,5 @@
 <script>
-	export let title
-	export let datePublished
+	let { title, datePublished } = $props();
 </script>
 
 <hgroup style="text-align: center">

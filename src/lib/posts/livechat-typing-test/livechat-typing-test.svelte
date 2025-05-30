@@ -1,4 +1,7 @@
 <script>
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	// take note
 	// 1) space and enter can starts the test
 	// 2) space and enter can register non-empty string
@@ -12,29 +15,29 @@
 	const DURATIONS = 60;
 
 	/** @type {number} */
-	let sec = DURATIONS;
+	let sec = $state(DURATIONS);
 
 	/** @type {boolean} : Flag to indicate whether the test is started or not.*/
-	let start = false;
+	let start = $state(false);
 
 	/** @type {string[]}*/
-	let words = [];
+	let words = $state([]);
 
 	/** @type {{ typed: string; class: string }[]}*/
-	let typed_words = [];
+	let typed_words = $state([]);
 
 	/** @type {string} : bind to the user input*/
-	let input = '';
+	let input = $state('');
 
 	/** @type {boolean} : correctness of input varible*/
-	let correct = false;
+	let correct = $state(false);
 
 	let currentWord = '';
-	let currentDisplay = '';
+	let currentDisplay = $state('');
 
-	let wordCount = 0;
-	let trueCharacterCount = 0;
-	let characterCount = 0;
+	let wordCount = $state(0);
+	let trueCharacterCount = $state(0);
+	let characterCount = $state(0);
 
 	let totalKeyPressed = 0;
 	let totalCorrectKeyPressed = 0;
@@ -43,9 +46,9 @@
 	/**
 	 * @type {boolean} : score dialog flag. used when to open/close the score dialog
 	 */
-	let scoreDialog = false;
+	let scoreDialog = $state(false);
 
-	let editableSpanElement;
+	let editableSpanElement = $state();
 
 	onMount(() => {
 		editableSpanElement = document.getElementById('editable');
@@ -192,8 +195,8 @@
 		</div>
 	</div>
 	<!-- {totalCorrectKeyPressed}/{totalKeyPressed} -->
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div id="typing" on:keydown on:click={editableSpanElement.focus()}>
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div id="typing" onkeydown={bubble('keydown')} onclick={editableSpanElement.focus()}>
 		<div id="typed">
 			{#each typed_words as p}
 				<span class={p.class}>{p.typed}</span>
@@ -206,8 +209,8 @@
 				autocorrect="off"
 				class={correct ? 'correct' : 'typo'}
 				bind:innerText={input}
-				on:input={start ? (e) => onInput(e) : (e) => detectStart(e)}
-				on:keydown={(e) => {
+				oninput={start ? (e) => onInput(e) : (e) => detectStart(e)}
+				onkeydown={(e) => {
 					if (e.code === 'Enter' || e.code == 'Space') {
 						e.preventDefault();
 						if (!start)
@@ -217,7 +220,7 @@
 						
 					}
 				}}
-			/>
+			></span>
 		</div>
 
 		<div id="new-sentence">
@@ -240,7 +243,7 @@
 				Congratulations!
 			</p>
 			<br />
-			<input type="button" value="Try Again" on:click={restart} />
+			<input type="button" value="Try Again" onclick={restart} />
 		</article>
 	</dialog>
 </section>

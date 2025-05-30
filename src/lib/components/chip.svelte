@@ -1,5 +1,11 @@
 <script>
-	export let text = '';
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [text]
+	 */
+
+	/** @type {Props} */
+	let { text = '' } = $props();
 </script>
 
 <!-- <span class="chip">{text}</span> -->

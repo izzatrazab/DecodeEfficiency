@@ -1,13 +1,27 @@
 <script>
-	export let title = ''
-	export let description = ''
-	export let slug = ''
+	/**
+	 * @typedef {Object} Props
+	 * @property {string} [title]
+	 * @property {string} [description]
+	 * @property {string} [slug]
+	 * @property {import('svelte').Snippet} [thumbnail]
+	 * @property {import('svelte').Snippet} [chip]
+	 */
+
+	/** @type {Props} */
+	let {
+		title = '',
+		description = '',
+		slug = '',
+		thumbnail,
+		chip
+	} = $props();
 </script>
 
 <a href="/{slug}">
 	<article class='card'>
 		<div id="thumbnail" >
-			<slot name="thumbnail"/>
+			{@render thumbnail?.()}
 		</div>
 		<hgroup>
 			<h5>
@@ -17,7 +31,7 @@
 				{description}
 			</p>
 		</hgroup>
-		<slot name='chip'/>
+		{@render chip?.()}
 	</article>
 </a>
 

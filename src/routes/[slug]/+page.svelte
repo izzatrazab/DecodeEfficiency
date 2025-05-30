@@ -1,9 +1,15 @@
 <script>
 	import Title from '$lib/components/title.svelte';
 	import { setContext } from 'svelte';
-	// import type { Post } from '$lib/types'
-	export let data;
-	let reload = {};
+	
+	/**
+	 * @typedef {Object} Props
+	 * @property {any} data - import type { Post } from '$lib/types'
+	 */
+
+	/** @type {Props} */
+	let { data } = $props();
+	let reload = $state({});
 
 	setContext('reload', { reloadComponent })
 
@@ -23,12 +29,12 @@
 
 <div style="padding-top: 2rem; padding-bottom: 2rem;">
 	{#key reload}
-		<svelte:component this={data.app} />
+		<data.app />
 	{/key}
 </div>
 
 <section class="container">
-	<svelte:component this={data.md} />
+	<data.md />
 </section>
 
 <style>

@@ -1,10 +1,10 @@
 <script>
-    import { page } from '$app/stores'
+    import { page } from '$app/state'
 </script>
     <p>
         Could not find project called:
         <br>
-        `{$page.error?.message}`
+        `{page.error?.message}`
     </p>
 <style>
     p{

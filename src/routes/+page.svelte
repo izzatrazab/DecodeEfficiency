@@ -2,7 +2,7 @@
 	import Card from '$lib/components/card.svelte';
 	import Chips from '$lib/components/chips.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <svelte:head>
@@ -17,13 +17,17 @@
 			slug={datum.slug}
 			--card-background="red"
 		>
-			<img
-				slot="thumbnail"
-				src={datum.thumbnail}
-				alt=""
-				style="border-radius: inherit;"
-			/>
-			<Chips arr={datum.categories} slot="chip" />
+			{#snippet thumbnail()}
+						<img
+					
+					src={datum.thumbnail}
+					alt=""
+					style="border-radius: inherit;"
+				/>
+					{/snippet}
+			{#snippet chip()}
+						<Chips arr={datum.categories}  />
+					{/snippet}
 		</Card>
 	{/each}
 	<div>

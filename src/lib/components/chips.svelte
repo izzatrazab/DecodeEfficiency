@@ -1,6 +1,6 @@
 <script>
 	import Chip from './chip.svelte'
-	export let arr  = []
+	let { arr = [] } = $props();
 </script>
 
 <div>
