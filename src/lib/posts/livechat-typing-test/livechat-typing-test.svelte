@@ -1,7 +1,4 @@
 <script>
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	// take note
 	// 1) space and enter can starts the test
 	// 2) space and enter can register non-empty string
@@ -135,15 +132,8 @@
 	}
 
 	function onInput(e = null) {
-		console.log(e);
-
-		// if(input.length == 1 && input.charCodeAt(0) == 160){
-
-		// 	return
-		// }
-
 		if (e.inputType === 'insertParagraph') {
-			console.log('in');
+			// console.log('in');
 			e.preventDefault();
 		}
 		totalKeyPressed++;
@@ -196,7 +186,8 @@
 	</div>
 	<!-- {totalCorrectKeyPressed}/{totalKeyPressed} -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div id="typing" onkeydown={bubble('keydown')} onclick={editableSpanElement.focus()}>
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<div id="typing" onclick={() => editableSpanElement.focus()} >
 		<div id="typed">
 			{#each typed_words as p}
 				<span class={p.class}>{p.typed}</span>
@@ -206,7 +197,7 @@
 				contenteditable
 				spellcheck="false"
 				autocapitalize="none"
-				autocorrect="off"
+				
 				class={correct ? 'correct' : 'typo'}
 				bind:innerText={input}
 				oninput={start ? (e) => onInput(e) : (e) => detectStart(e)}
