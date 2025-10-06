@@ -187,7 +187,7 @@
 	<!-- {totalCorrectKeyPressed}/{totalKeyPressed} -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
-	<div id="typing" onclick={() => editableSpanElement.focus()} >
+	<div id="typing" onclick={() => editableSpanElement.focus()}>
 		<div id="typed">
 			{#each typed_words as p}
 				<span class={p.class}>{p.typed}</span>
@@ -197,18 +197,14 @@
 				contenteditable
 				spellcheck="false"
 				autocapitalize="none"
-				
 				class={correct ? 'correct' : 'typo'}
 				bind:innerText={input}
 				oninput={start ? (e) => onInput(e) : (e) => detectStart(e)}
 				onkeydown={(e) => {
 					if (e.code === 'Enter' || e.code == 'Space') {
 						e.preventDefault();
-						if (!start)
-							detectStart();
-						else if (input != '' && input.charCodeAt(0) != 10)
-							check();
-						
+						if (!start) detectStart();
+						else if (input != '' && input.charCodeAt(0) != 10) check();
 					}
 				}}
 			></span>
